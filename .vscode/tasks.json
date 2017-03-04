@@ -1,0 +1,47 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "0.1.0",
+  "command": "npm",
+  "isShellCommand": true,
+  "showOutput": "always",
+  "suppressTaskName": true,
+  "tasks": [
+    {
+      "taskName": "Start development server",
+      "args": ["run", "dev"],
+      "isWatching": true
+    },
+    {
+      "taskName": "Build",
+      "args": ["run", "build"],
+      "isBuildCommand": true
+    },
+    {
+      "taskName": "Lint",
+      "args": ["run", "lint"],
+      "problemMatcher": "$eslint-stylish"
+    },
+    {
+      "taskName": "npm install",
+      "args": ["install"]
+    },
+    {
+      "taskName": "npm update",
+      "args": ["update"]
+    },
+    {
+      "taskName": "Run all tests",
+      "args": ["run", "test"],
+      "isTestCommand": true
+    },
+    {
+      "taskName": "Run unit tests",
+      "args": ["run", "unit"]
+    },
+    {
+      "taskName": "Run E2E tests",
+      "args": ["run", "e2e"]
+    }
+  ]
+}
