@@ -19,9 +19,6 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 						gettext-base \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
 COPY package.json /tmp/package.json
 COPY yarn.lock /tmp/yarn.lock
 RUN cd /tmp && NPM_CONFIG_LOGLEVEL=warn yarn install
