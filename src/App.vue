@@ -39,7 +39,18 @@ export default {
   },
   methods: {
     handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+      switch (key) {
+        case '1':
+          this.$router.push('/')
+          break
+        case '2-1':
+        case '2-2':
+        case '2-3':
+          this.$router.push('/problems')
+          break
+        default:
+          console.log(key, keyPath)
+      }
     }
   }
 }
