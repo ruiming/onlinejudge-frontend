@@ -5,6 +5,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import * as types from './mutation-types'
 import Problems from './modules/problems'
+import Problem from './modules/problem'
 
 Vue.use(Vuex)
 
@@ -28,7 +29,8 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    Problems
+    Problems,
+    Problem
   },
   strict: debug,
   plugins: debug ? [createLogger(), msg] : [msg]

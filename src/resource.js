@@ -13,6 +13,9 @@ const Problems = Vue.resource('problems', {}, {
   }
 })
 
+const Problem = Vue.resource('problem{/id}')
+
 export {
-  Problems
+  Problems,
+  Problem
 }
