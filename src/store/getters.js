@@ -16,3 +16,12 @@ export const problems = state => {
     ...state.Problems.problems
   ]
 }
+
+/**
+ * 根据题目ID获取一道题信息
+ */
+export const problem = state => {
+  return {
+    ...state.Problem.problem
+  }
+}
