@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './pages/Home'
 import Problems from './pages/Problems'
+import Problem from './pages/Problem'
 
 Vue.use(Router)
 
@@ -15,5 +16,9 @@ export default new Router({
     path: '/problems',
     name: 'Problems',
     component: Problems
+  }, {
+    path: '/problem/:problemId',
+    name: 'Problem',
+    component: Problem
   }]
 })
