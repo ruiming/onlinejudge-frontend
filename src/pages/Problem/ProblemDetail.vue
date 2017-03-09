@@ -13,6 +13,10 @@
     <h3>Your Code</h3>
     <codemirror v-model="code" :options="editorOption"></codemirror>
   </div>
+  <div class="btn-group">
+    <el-button>默认按钮</el-button>
+    <el-button type="primary">主要按钮</el-button>
+  </div>
 </div>
 </template>
 
@@ -23,7 +27,7 @@ export default {
   props: ['problem'],
   data () {
     return {
-      code: 'const a = 10',
+      code: '',
       editorOption: {
         tabSize: 4,
         mode: 'text/x-c++src',
@@ -56,12 +60,11 @@ export default {
 </script>
 
 <style scoped>
-.description,
-.supplement,
-.usercode {
-  text-align: left;
-}
 .supplement {
   border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.usercode {
+  padding: 10px 0;
 }
 </style>

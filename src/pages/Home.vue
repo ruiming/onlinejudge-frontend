@@ -34,7 +34,6 @@ export default {
   border-right: 1px solid #eee;
 }
 .media {
-  text-align: left;
   overflow: hidden;
   border-bottom: 1px solid #eee;
 }

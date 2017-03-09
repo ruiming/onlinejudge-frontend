@@ -31,7 +31,4 @@ export default {
 </script>
 
 <style scoped>
-.el-table_1_column_2 .cell {
-  text-align: left;
-}
 </style>
