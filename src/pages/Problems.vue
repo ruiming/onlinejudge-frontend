@@ -7,12 +7,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import store from '../store'
 export default {
-  computed: mapGetters({
-    problems: 'problems'
-  }),
+  computed: {
+    ...mapState({
+      problems: state => state.problems
+    })
+  },
   methods: {
     formatter (row, column) {
       return (row.takeCount / row.submitCount).toFixed(2)

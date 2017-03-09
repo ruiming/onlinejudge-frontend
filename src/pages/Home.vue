@@ -13,12 +13,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import store from '../store'
 export default {
-  computed: mapGetters({
-    problems: 'recentProblems'
-  }),
+  computed: {
+    ...mapState({
+      problems: state => state.recentProblems
+    })
+  },
   async beforeRouteEnter (to, from, next) {
     await store.dispatch('getRecentProblems')
     await next()

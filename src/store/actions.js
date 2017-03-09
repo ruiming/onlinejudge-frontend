@@ -1,7 +1,6 @@
 /**
  * 所有 XHR 请求都写在这里
- * 在 mutation.types.js 定义好动作常量, commit 后由对应的 module 接收
- * 并定义好 getter 由视图接收
+ * 请求返回值通过 COMMIT 一个 MUTATION-TYPE 修改状态树
  */
 import { Problems, Problem } from '../resource'
 import * as types from './mutation-types'

@@ -11,14 +11,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import store from '../../store'
 import ProblemDetail from './ProblemDetail'
 
 export default {
-  computed: mapGetters({
-    problem: 'problem'
-  }),
+  computed: {
+    ...mapState({
+      problem: state => state.problem
+    })
+  },
   data () {
     return {
       activeName2: 'first'
@@ -30,7 +32,6 @@ export default {
     }
   },
   async beforeRouteEnter (to, from, next) {
-    console.log(to.params)
     await store.dispatch('getProblemById', {
       id: to.params.id
     })

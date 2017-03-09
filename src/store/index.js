@@ -4,8 +4,7 @@ import createLogger from 'vuex/dist/logger'
 import * as actions from './actions'
 import * as getters from './getters'
 import * as types from './mutation-types'
-import Problems from './modules/problems'
-import Problem from './modules/problem'
+import mutations from './mutations'
 
 Vue.use(Vuex)
 
@@ -25,13 +24,17 @@ const msg = store => store.subscribe(mutation => {
   }
 })
 
+const state = {
+  problems: [],             // 全部题目
+  recentProblems: [],       // 首页最近题目
+  problem: {}               // 单道题详情
+}
+
 export default new Vuex.Store({
+  state,
   actions,
   getters,
-  modules: {
-    Problems,
-    Problem
-  },
+  mutations,
   strict: debug,
   plugins: debug ? [createLogger(), msg] : [msg]
 })
