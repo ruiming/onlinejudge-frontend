@@ -59,12 +59,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .supplement {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
 }
 .usercode {
   padding: 10px 0;
+  h3 {
+    margin-top: 0;
+  }
 }
 </style>
