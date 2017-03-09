@@ -14,8 +14,8 @@
     <codemirror v-model="code" :options="editorOption"></codemirror>
   </div>
   <div class="btn-group">
-    <el-button>默认按钮</el-button>
-    <el-button type="primary">主要按钮</el-button>
+    <el-button>运行</el-button>
+    <el-button type="primary" @click="submit">提交</el-button>
   </div>
 </div>
 </template>
@@ -53,6 +53,16 @@ export default {
       }]
     }
   },
+  methods: {
+    // TODO Code type
+    async submit () {
+      await this.$store.dispatch('submitUserCode', {
+        id: this.problem.id,
+        code: this.code,
+        type: 'CC'
+      })
+    }
+  },
   components: [
     codemirror
   ]
@@ -69,5 +79,9 @@ export default {
   h3 {
     margin-top: 0;
   }
+}
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
