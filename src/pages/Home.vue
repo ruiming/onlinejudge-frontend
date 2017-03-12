@@ -18,11 +18,11 @@ import store from '../store'
 export default {
   computed: {
     ...mapState({
-      problems: state => state.recentProblems
+      problems: state => state.problems
     })
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getRecentProblems')
+    await store.dispatch('getProblems', { limit: 100, offset: 0 })
     await next()
   }
 }

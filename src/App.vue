@@ -30,12 +30,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import store from './store'
 export default {
   name: 'app',
   data () {
     return {
       activeIndex: '1'
     }
+  },
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
   },
   methods: {
     handleSelect (key, keyPath) {
@@ -46,12 +53,16 @@ export default {
         case '2-1':
         case '2-2':
         case '2-3':
-          this.$router.push('/problems')
+          this.$router.push('/problemset')
           break
         default:
           console.log(key, keyPath)
       }
     }
+  },
+  async beforeRouteEnter (to, from, next) {
+    await store.dispatch('getUser')
+    await next()
   }
 }
 </script>

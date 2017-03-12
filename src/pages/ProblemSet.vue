@@ -20,7 +20,7 @@ export default {
       return (row.takeCount / row.submitCount).toFixed(2)
     },
     gotoProblem (problem) {
-      this.$router.push(`/problem/${problem.id}`)
+      this.$router.push(`/problems/${problem.id}`)
     }
   },
   async beforeRouteEnter (to, from, next) {
