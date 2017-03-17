@@ -59,7 +59,7 @@ export default {
       await this.$store.dispatch('submitUserCode', {
         id: this.problem.id,
         code: this.code,
-        type: 'CC'
+        type: 'cc'
       })
     }
   },
