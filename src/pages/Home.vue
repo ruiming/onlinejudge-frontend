@@ -13,14 +13,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import store from '../store'
 export default {
-  computed: mapGetters({
-    problems: 'recentProblems'
-  }),
+  computed: {
+    ...mapState({
+      problems: state => state.problems
+    })
+  },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getRecentProblems')
+    await store.dispatch('getProblems', { limit: 50, offset: 0 })
     await next()
   }
 }
@@ -32,7 +34,6 @@ export default {
   border-right: 1px solid #eee;
 }
 .media {
-  text-align: left;
   overflow: hidden;
   border-bottom: 1px solid #eee;
 }

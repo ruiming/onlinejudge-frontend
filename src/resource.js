@@ -6,16 +6,10 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.http.options.root = process.env.API_ROOT
 
-const Problems = Vue.resource('problems', {}, {
-  recent: {
-    method: 'GET',
-    url: 'problems/recent'
-  }
-})
-
-const Problem = Vue.resource('problem{/id}')
+const Problem = Vue.resource('problems{/id}')
+const Submission = Vue.resource('submissions{/id}')
 
 export {
-  Problems,
-  Problem
+  Problem,
+  Submission
 }

@@ -7,29 +7,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import store from '../store'
 export default {
-  computed: mapGetters({
-    problems: 'problems'
-  }),
+  computed: {
+    ...mapState({
+      problems: state => state.problems
+    })
+  },
   methods: {
     formatter (row, column) {
       return (row.takeCount / row.submitCount).toFixed(2)
     },
     gotoProblem (problem) {
-      this.$router.push(`/problem/${problem.id}`)
+      this.$router.push(`/problems/${problem.id}`)
     }
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getProblems', { limit: 100, offset: 0 })
+    await store.dispatch('getProblems', { limit: 50, offset: 0 })
     await next()
   }
 }
 </script>
 
 <style scoped>
-.el-table_1_column_2 .cell {
-  text-align: left;
-}
 </style>

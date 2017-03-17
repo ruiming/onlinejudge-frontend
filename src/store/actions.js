@@ -1,21 +1,13 @@
 /**
  * 所有 XHR 请求都写在这里
- * 在 mutation.types.js 定义好动作常量, commit 后由对应的 module 接收
- * 并定义好 getter 由视图接收
+ * 请求返回值通过 COMMIT 一个 MUTATION-TYPE 修改状态树
  */
-import { Problems, Problem } from '../resource'
+import { Problem, Submission } from '../resource'
 import * as types from './mutation-types'
 
-/** 获取首页最新发布题目 */
-export const getRecentProblems = ({ commit }) => {
-  return Problems.recent().then(res => {
-    commit(types.RECEIVE_RECENT_PROBLEMS, res.data)
-  })
-}
-
 /** 获取题目列表 */
-export const getProblems = ({ commit, state }, { limit, offset }) => {
-  return Problems.get({ limit, offset }).then(res => {
+export const getProblems = ({ commit, state }, { limit, offset, sortby, order }) => {
+  return Problem.get({ limit, offset, sortby, order }).then(res => {
     commit(types.RECEIVE_PROBLEMS, res.data)
   })
 }
@@ -24,5 +16,12 @@ export const getProblems = ({ commit, state }, { limit, offset }) => {
 export const getProblemById = ({ commit, state }, { id }) => {
   return Problem.get({ id }).then(res => {
     commit(types.RECEIVE_PROBLEM, res.data)
+  })
+}
+
+/** 提交用户代码进行判题 */
+export const submitUserCode = ({ commit, state }, { id, code, type }) => {
+  return Submission.save({ id, code, type }).then(res => {
+    console.log(res)
   })
 }
