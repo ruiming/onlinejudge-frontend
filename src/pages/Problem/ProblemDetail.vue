@@ -54,12 +54,11 @@ export default {
     }
   },
   methods: {
-    // TODO Code type
     async submit () {
       await this.$store.dispatch('submitUserCode', {
         id: this.problem.id,
         code: this.code,
-        type: 'cc'
+        lang: 'cc'
       })
     }
   },

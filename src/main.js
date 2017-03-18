@@ -5,13 +5,14 @@ import ElementUI from 'element-ui'
 import moment from 'moment'
 import VueHead from 'vue-head'
 import VueCodeMirror from 'vue-codemirror'
-import App from './App'
-import router from './router'
-import store from './store'
-import './resource'
+import App from 'src/App'
+import router from 'src/router'
+import store from 'src/store'
+import 'src/resource'
 
 import 'element-ui/lib/theme-default/index.css'
 import 'normalize.css'
+import 'src/styles/variables.css'
 
 moment.locale('zh-cn')
 Vue.use(ElementUI)
