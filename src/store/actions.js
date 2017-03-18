@@ -20,8 +20,8 @@ export const getProblemById = ({ commit, state }, { id }) => {
 }
 
 /** 提交用户代码进行判题 */
-export const submitUserCode = ({ commit, state }, { id, code, type }) => {
-  return Submission.save({ id, code, type }).then(res => {
+export const submitUserCode = ({ commit, state }, { id, code, lang }) => {
+  return Submission.save({ id, code, lang }).then(res => {
     console.log(res)
   })
 }
