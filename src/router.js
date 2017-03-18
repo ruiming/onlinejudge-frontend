@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './pages/Home'
-import ProblemSet from './pages/ProblemSet'
-import Problem from './pages/Problem/'
+import Home from 'src/pages/Home'
+import ProblemSet from 'src/pages/ProblemSet'
+import Problem from 'src/pages/Problem/'
 
 Vue.use(Router)
 
