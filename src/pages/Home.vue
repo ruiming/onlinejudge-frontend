@@ -14,7 +14,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import store from '../store'
+import store from 'src/store'
 export default {
   computed: {
     ...mapState({
