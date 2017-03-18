@@ -12,6 +12,7 @@ import './resource'
 
 import 'element-ui/lib/theme-default/index.css'
 import 'normalize.css'
+import './styles/variables.css'
 
 moment.locale('zh-cn')
 Vue.use(ElementUI)
