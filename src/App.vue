@@ -1,25 +1,20 @@
 <template>
   <div id="app">
-    <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+    <el-menu :default-active="$route.path" :router="true" mode="horizontal">
       <div class="container">
-        <el-menu-item index="1">主页</el-menu-item>
-        <el-submenu index="2">
-          <template slot="title">题库</template>
-          <el-menu-item index="2-1">C++</el-menu-item>
-          <el-menu-item index="2-2">JAVA</el-menu-item>
-          <el-menu-item index="2-3">PYTHON</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="3">比赛</el-menu-item>
-        <el-menu-item index="4">文章</el-menu-item>
-        <el-menu-item index="5">讨论</el-menu-item>
-        <el-submenu index="6" class="user-menu">
+        <el-menu-item index="/">主页</el-menu-item>
+        <el-menu-item index="/problemset">题库</el-menu-item>
+        <el-menu-item index="/competitions">比赛</el-menu-item>
+        <el-menu-item index="/articles">文章</el-menu-item>
+        <el-menu-item index="/discuss">讨论</el-menu-item>
+        <el-submenu index="/" class="user-menu">
           <template slot="title">用户XXX</template>
-          <el-menu-item index="6-1">个人信息</el-menu-item>
-          <el-menu-item index="6-2">我的提交</el-menu-item>
-          <el-menu-item index="6-3">我的收藏</el-menu-item>
-          <el-menu-item index="6-4">更改密码</el-menu-item>
+          <el-menu-item index="/user/profile">个人信息</el-menu-item>
+          <el-menu-item index="/user/submission">我的提交</el-menu-item>
+          <el-menu-item index="/user/mark">我的收藏</el-menu-item>
+          <el-menu-item index="/user/security">更改密码</el-menu-item>
           <div class="line"></div>
-          <el-menu-item index="6-5">退出登录</el-menu-item>
+          <el-menu-item index="/user/logout">退出登录</el-menu-item>
         </el-submenu>
       </div>
     </el-menu>
@@ -33,32 +28,10 @@
 import { mapState } from 'vuex'
 import store from './store'
 export default {
-  name: 'app',
-  data () {
-    return {
-      activeIndex: '1'
-    }
-  },
   computed: {
     ...mapState({
       user: state => state.user
     })
-  },
-  methods: {
-    handleSelect (key, keyPath) {
-      switch (key) {
-        case '1':
-          this.$router.push('/')
-          break
-        case '2-1':
-        case '2-2':
-        case '2-3':
-          this.$router.push('/problemset')
-          break
-        default:
-          console.log(key, keyPath)
-      }
-    }
   },
   async beforeRouteEnter (to, from, next) {
     await store.dispatch('getUser')
