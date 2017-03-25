@@ -1,6 +1,6 @@
 {
   "name": "onlinejudge-frontend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Frontend of OnlineJudge",
   "author": "ruiming <ruiming.zhuang@gmail.com>",
   "private": true,
