@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss">
 body {
-  font-family: var(--font-family-base);
+  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
