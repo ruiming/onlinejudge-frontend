@@ -1,6 +1,4 @@
 <template>
-<el-row :gutter="10">
-<el-col :sm="24" :md="18">
 <div>
   <h2>{{problem.id}}. {{problem.title}}</h2>
   <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
@@ -10,23 +8,6 @@
   </el-tabs>
   <problem-detail :problem="problem"></problem-detail>
 </div>
-</el-col>
-<el-col :sm="0" :md="6" >
-  <div class="right_title">
-  <p><strong>· 提交数量：</strong></p>
-  <p><strong>· 通过数量：</strong></p>
-  <p><strong>· 通 过 率：</strong></p>
-  <p><strong>· 作 者：</strong></p>
-  </div>
-  <h3>相关推荐：</h3>
-  <el-tag
-    v-for="tag in tags"
-    :closable="true"
-    :type="tag.type">
-    {{tag.name}}
-  </el-tag>
-</el-col>
-</el-row>
 </template>
 
 <script>
@@ -42,14 +23,7 @@ export default {
   },
   data () {
     return {
-      activeName2: 'first',
-      tags: [
-          { name: '标签一', type: '' },
-          { name: '标签二', type: 'gray' },
-          { name: '标签三', type: 'primary' },
-          { name: '标签四', type: 'success' },
-          { name: '标签五', type: 'warning' },
-          { name: '标签六', type: 'danger' }]
+      activeName2: 'first'
     }
   },
   methods: {
@@ -65,16 +39,10 @@ export default {
   },
   components: {
     ProblemDetail
+
   }
 }
 </script>
 
 <style scoped>
-.right_title{
-  font-size: 15px;
-  color:#1d8ce0;
-}
-h3{
-  color: #8492a6;
-}
 </style>
