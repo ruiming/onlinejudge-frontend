@@ -11,6 +11,13 @@
   </div>
   <div class="usercode">
     <h3>Your Code</h3>
+    <p><el-select v-model="value5" multiple placeholder="C++">
+    <el-option
+      v-for="item in options"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select></p>
     <codemirror v-model="code" :options="editorOption"></codemirror>
   </div>
   <div class="btn-group">
@@ -33,7 +40,24 @@ export default {
         mode: 'text/x-c++src',
         lineNumbers: true,
         line: true
-      }
+      },
+      options: [{
+        value: '选项1',
+        label: 'C++'
+      }, {
+        value: '选项2',
+        label: 'C'
+      }, {
+        value: '选项3',
+        label: 'JAVA'
+      }, {
+        value: '选项4',
+        label: 'Python'
+      }, {
+        value: '选项5',
+        label: 'PHP'
+      }],
+      value5: []
     }
   },
   computed: {
@@ -69,9 +93,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.description{
+  line-height:180%; 
+}
 .supplement {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
+  line-height:180%;
 }
 .usercode {
   padding: 10px 0;
