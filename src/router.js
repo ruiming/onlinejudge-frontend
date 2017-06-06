@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from 'src/pages/Home'
 import ProblemSet from 'src/pages/ProblemSet'
 import Problem from 'src/pages/Problem/'
+import Register from 'src/pages/Register'
 
 Vue.use(Router)
 
@@ -20,5 +21,9 @@ export default new Router({
     path: '/problems/:id',
     name: 'Problem',
     component: Problem
+  }, {
+    path: '/register',
+    name: 'Register',
+    component: Register
   }]
 })
