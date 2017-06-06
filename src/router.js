@@ -4,6 +4,7 @@ import Home from 'src/pages/Home'
 import ProblemSet from 'src/pages/ProblemSet'
 import Problem from 'src/pages/Problem/'
 import Register from 'src/pages/Register'
+import SignIn from 'src/pages/SignIn'
 
 Vue.use(Router)
 
@@ -25,5 +26,9 @@ export default new Router({
     path: '/register',
     name: 'Register',
     component: Register
+  }, {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn
   }]
 })

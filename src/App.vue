@@ -20,7 +20,7 @@
         </el-submenu>
         -->
         <span class="btngroup">
-        <el-button type="primary">登录</el-button>
+        <el-button type="primary" v-on:click="signin">登录</el-button>
         <el-button type="primary" v-on:click="register">注册</el-button>
         </span>
       </div>
@@ -28,16 +28,6 @@
     
     <div class="container view">
       <router-view></router-view>
-      <div class="welcome">
-      <div class="title"><h>欢迎来到 SCNU OnlineJudge!</h></div>
-      <div class="introduction">
-      <p>OJ是一个提高编码技术的平台。从一个不断扩展的问题库中挑选
-        问题，<br>并提交您的解决方案，看看您是否正确地解决了它。就是这么简单!</br></p>
-      <p>我们的平台目前支持两种语言:C语言与C++</p>
-      <p>设计开发者：SCNU OJ团队</p>
-      </div>
-      <div class="registerbtn"><el-button type="primary">去看看</el-button></div>
-      </div>
     </div>
   </div>
 </template>
@@ -58,6 +48,9 @@ export default {
   methods: {
     register: function () {
       this.$router.push({path: '/register'})
+    },
+    signin: function () {
+      this.$router.push({path: '/signin'})
     }
   }
 }
@@ -98,27 +91,4 @@ body {
   padding: 12px;
 }
 
-.title {
-  font-size: 35px;
-  color:#20a0ff;
-  line-height: 240%;
-}
-
-.introduction {
-  font-size: 20px;
-  color:#8492a6;
-  line-height: 140%;
-}
-
-.welcome{
-  background-color: #eef1f6;
-  padding: 20px;
-  margin-top: 120px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.registerbtn{
-  margin-left: 300px;
-}
 </style>
