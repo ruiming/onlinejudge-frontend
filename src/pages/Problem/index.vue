@@ -1,12 +1,14 @@
 <template>
 <div>
-  <h2>{{problem.id}}. {{problem.title}}</h2>
+  <h2 class="problemtitlefont">{{problem.id}}. {{problem.title}}</h2>
   <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
-    <el-tab-pane label="题目描述" name="first"></el-tab-pane>
+    <el-tab-pane  label="题目描述" name="first"> 
+      <problem-detail :problem="problem"></problem-detail>
+    </el-tab-pane>
     <el-tab-pane label="提交记录" name="second"></el-tab-pane>
-    <el-tab-pane label="解法" name="third"></el-tab-pane>
+
   </el-tabs>
-  <problem-detail :problem="problem"></problem-detail>
+  
 </div>
 </template>
 
@@ -44,4 +46,10 @@ export default {
 </script>
 
 <style scoped>
+.problemtitlefont{
+  font-size: 20px;
+  font-style:italic;
+  color: #717273;
+}
+
 </style>

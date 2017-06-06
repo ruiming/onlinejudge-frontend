@@ -9,16 +9,16 @@
           <el-menu-item index="">Java</el-menu-item>
           <el-menu-item index="">Python</el-menu-item>
         </el-submenu>
-        <el-menu-item index="/competitions">比赛</el-menu-item>
+       <!-- <el-menu-item index="/competitions">比赛</el-menu-item>
         <el-menu-item index="/articles">文章</el-menu-item>
-        <el-menu-item index="/discuss">讨论</el-menu-item>
+        <el-menu-item index="/discuss">讨论</el-menu-item>-->
         <el-submenu index="/" class="user-menu">
           <template slot="title">用户XXX</template>
-          <el-menu-item index="/user/mark">我的收藏</el-menu-item>
-          <el-menu-item index="/user/submission">历史记录/我的提交</el-menu-item>
-           <div class="line"></div>
+         <!-- <el-menu-item index="/user/mark">我的收藏</el-menu-item>-->
+          <el-menu-item index="/user/submission">历史记录</el-menu-item>
+         <!--  <div class="line"></div>
            <el-menu-item index="">个人战绩</el-menu-item>
-          <el-menu-item index="/user/profile">个人信息/个人积分</el-menu-item>
+          <el-menu-item index="/user/profile">个人信息/个人积分</el-menu-item>-->
           <div class="line"></div>
            <el-menu-item index="/user/security">修改密码</el-menu-item>
           <el-menu-item index="/user/logout">退出登录</el-menu-item>
@@ -61,6 +61,8 @@ body {
   border-radius: 0;
 }
 
+
+
 .user-menu {
   float: right !important;
 }
@@ -68,6 +70,10 @@ body {
 .view {
   padding: 10px;
   box-sizing: border-box;
+}
+.line{
+  background: #eee;
+  height: 1.5px;
 }
 
 @media (min-width: 1200px) {

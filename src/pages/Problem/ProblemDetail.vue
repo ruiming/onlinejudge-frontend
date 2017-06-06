@@ -1,5 +1,6 @@
 <template>
-<div>
+<el-row :gutter="10">
+  <el-col :sm="20" :md="16" >
   <div class="description">
     <p>{{problem.description}}</p>
   </div>
@@ -7,17 +8,38 @@
     <div v-for="(item, index) in supplement" :key="index">
       <h3>{{item.name}}</h3>
       <p>{{item.value}}</p>
+      <div class="line"></div>
     </div>
   </div>
   <div class="usercode">
-    <h3>Your Code</h3>
-    <codemirror v-model="code" :options="editorOption"></codemirror>
+    <form>
+      <select class="language">
+       <option value="C++">C++</option>
+       <option value="Java">Java</option>
+       <option value="Python">Python</option>
+      </select>
+      <i class="fa fa-files-o" aria-hidden="true"></i>
+      <i class="fa fa-step-forward" aria-hidden="true"></i>
+    </form>
+   <div class="codemirrorfont">
+    <codemirror  v-model="code" :options="editorOption"></codemirror>
+   </div>
   </div>
   <div class="btn-group">
-    <el-button>运行</el-button>
+
     <el-button type="primary" @click="submit">提交</el-button>
   </div>
-</div>
+</el-col>
+ <el-col :sm="0" :md="6" offset="2">
+   <ul class="submittable">
+  <li><i class="fa-li fa fa-check-square"></i>can be used</li>
+  <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
+  <li><i class="fa-li fa fa-square"></i>in lists</li>
+</ul>
+
+
+ </el-col>
+</el-row>
 </template>
 
 <script>
@@ -69,9 +91,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .supplement {
-  border-bottom: 1px solid #eee;
+
   padding-bottom: 10px;
+  color: #48576A;
+  font-size: 14px;
+  line-height:200%;
+}
+.description{
+  color: #48576A;
+  font-size: 14px;
+  line-height:200%;
 }
 .usercode {
   padding: 10px 0;
@@ -82,5 +113,28 @@ export default {
 .btn-group {
   display: flex;
   justify-content: flex-end;
+}
+.line{
+  background: #eee;
+  height: 1px;
+}
+.codemirrorfont{
+  border: 1px outset #eee;
+}
+.language{
+  width: 20%;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.fa.fa-files-o{
+width: 18px;
+height: 18px;
+color: #666666;
+
+}
+.fa.fa-step-forward{
+  width: 12px;
+  height: 18px;
+  color: #6DB773;
 }
 </style>
