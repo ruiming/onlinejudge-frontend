@@ -30,7 +30,7 @@
 </div>
 
 <hsy-dialog class="tip" v-model="visible">
-  <div slot="title">提示</div>
+  <div slot="title">提&nbsp;&nbsp;示</div>
   <div slot="body">
     <div>注册成功！</div>
     <div class="btngroup">
@@ -79,10 +79,6 @@ export default {
   margin-top: 40px;
   margin-left: 20px;
   margin-right: 20px;
-}
-
-.registerbtn{
-  margin-left: 300px;
 }
 
 p1{
