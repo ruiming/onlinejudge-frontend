@@ -1,30 +1,34 @@
 <template>
 <div class="welcome">
-<div class="title"><h>欢迎来到 SCNU OnlineJudge!</h></div>
+<div class="title"><p>欢迎来到 SCNU OnlineJudge!</p></div>
  <div class="introduction">
   <p>OJ是一个提高编码技术的平台。从一个不断扩展的问题库中挑选
-        问题，<br>并提交您的解决方案，看看您是否正确地解决了它。就是这么简单!</br></p>
+        问题，<br>并提交您的解决方案，看看您是否正确地解决了它。就是这么简单!</p>
   <p>我们的平台目前支持两种语言:C语言与C++</p>
   <p>设计开发者：SCNU OJ团队</p>
 </div>
-    <br><div class="input">
+    <div class="input">
         <p1>用户名：</p1>
         <div class="inputmsg">
+        <el-tooltip effect="dark" content="用户名由2到10位数字或字母组成" placement="bottom">
         <el-input placeholder="请输入用户名" v-model="input"></el-input>
+        </el-tooltip>
         </div>
-    </div></br>
-    <br><div class="input">
+    </div><br><br>
+    <div class="input">
         <p1>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</p1>
         <div class="inputmsg">
         <el-input placeholder="请输入邮箱" v-model="input"></el-input>
         </div>
-    </div></br>
-    <br><div class="input">
+    </div><br><br>
+    <div class="input">
         <p1>密&nbsp;&nbsp;&nbsp;&nbsp;码：</p1>
         <div class="inputmsg">
+        <el-tooltip effect="dark" content="密码由6到18位数字或字母组成" placement="bottom">
         <el-input placeholder="请输入密码" v-model="input"></el-input>
+        </el-tooltip>
         </div>
-    </div></br>
+    </div><br><br>
 <div class="regbtn">
 <el-button type="primary" @click="visible = true">注册SCNU OJ账号</el-button>
 </div>
@@ -60,7 +64,7 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 35px;
+  font-size: 30px;
   color:#20a0ff;
   line-height: 240%;
   text-align: center;
@@ -76,7 +80,7 @@ export default {
 .welcome{
   background-color: #eef1f6;
   padding: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
 }

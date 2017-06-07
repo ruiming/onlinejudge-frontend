@@ -47,7 +47,7 @@ export default {
   border-bottom: 1px solid #eee;
 }
 h4{
-  color:#1d8ce0;
+  color:#20a0ff;
 }
 h4 span{
   color:#8492a6;

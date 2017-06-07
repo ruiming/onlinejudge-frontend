@@ -1,25 +1,27 @@
 <template>
 <div class="welcome">
-<div class="title"><h>欢迎来到 SCNU OnlineJudge!</h></div>
+<div class="title"><p>欢迎来到 SCNU OnlineJudge!</p></div>
  <div class="introduction">
   <p>OJ是一个提高编码技术的平台。从一个不断扩展的问题库中挑选
-        问题，<br>并提交您的解决方案，看看您是否正确地解决了它。就是这么简单!</br></p>
+        问题，<br>并提交您的解决方案，看看您是否正确地解决了它。就是这么简单!</p>
 </div>
-    <br><div class="input">
+    <div class="input">
         <p1>用户名：</p1>
         <div class="inputmsg">
         <el-input placeholder="请输入用户名或邮箱" v-model="input"></el-input>
         </div>
-    </div></br>
-    <br><div class="input">
+    </div><br><br>
+    <div class="input">
         <p1>密&nbsp;&nbsp;&nbsp;&nbsp;码：</p1>
         <div class="inputmsg">
         <el-input placeholder="请输入密码" v-model="input"></el-input>
         </div>
-    </div></br>
-<div class="signinbtn">
-<el-button type="primary" @click="visible = true">登&nbsp;&nbsp;&nbsp;&nbsp;录</el-button>
-</div>
+    </div><br>
+
+    <div class="signbtngroup">
+        <el-button>忘记密码?</el-button>
+        <el-button type="primary" v-on:click="login">&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;</el-button>
+    </div>  
 
 <hsy-dialog class="tip" v-model="visible">
   <div slot="title">提&nbsp;&nbsp;示</div>
@@ -45,6 +47,9 @@ export default {
     handleYes () {
       alert('Yes')
       this.visible = false
+    },
+    login: function () {
+      this.$router.push({path: '/home'})
     }
   }
 }
@@ -52,7 +57,7 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 35px;
+  font-size: 30px;
   color:#20a0ff;
   line-height: 240%;
   text-align: center;
@@ -71,6 +76,7 @@ export default {
   margin-top: 40px;
   margin-left: 20px;
   margin-right: 20px;
+  height: 350px;
 }
 
 p1{
@@ -85,9 +91,9 @@ p1{
   padding: 10px;
 }
 
-.signinbtn{
+.signbtngroup{
   margin-top: 30px;
-  margin-left: 420px;
+  margin-left: 340px;
 }
 
 .inputmsg{
