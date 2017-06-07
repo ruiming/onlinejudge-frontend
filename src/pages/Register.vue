@@ -26,20 +26,19 @@
         </div>
     </div></br>
 <div class="regbtn">
-<el-button type="primary" @click="dialogVisible = true">注册SCNU OJ账号</el-button>
+<el-button type="primary" @click="visible = true">注册SCNU OJ账号</el-button>
 </div>
 
-<el-dialog
-  title="提示"
-  :visible.sync="dialogVisible"
-  size="tiny"
-  :before-close="handleClose">
-  <span>注册成功！</span>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
-</el-dialog>
+<hsy-dialog class="tip" v-model="visible">
+  <div slot="title">提示</div>
+  <div slot="body">
+    <div>注册成功！</div>
+    <div class="btngroup">
+      <el-button @click="visible = false">取 消</el-button>
+      <el-button type="primary" @click="visible = false">确 定</el-button>
+    </div>
+  </div>
+</hsy-dialog>
 </div>
 </template>
 
@@ -47,16 +46,13 @@
 export default {
   data () {
     return {
-      dialogVisible: false
+      visible: false
     }
   },
   methods: {
-    handleClose (done) {
-      this.$confirm('确认关闭？')
-          .then(_ => {
-            done()
-          })
-          .catch(_ => {})
+    handleYes () {
+      alert('Yes')
+      this.visible = false
     }
   }
 }
@@ -67,12 +63,14 @@ export default {
   font-size: 35px;
   color:#20a0ff;
   line-height: 240%;
+  text-align: center;
 }
 
 .introduction {
   font-size: 16px;
   color:#8492a6;
   line-height: 140%;
+  margin-left: 200px;
 }
 
 .welcome{
@@ -92,7 +90,7 @@ p1{
   color: #20a0ff;
   float: left;
   padding: 5px;
-  margin-left: 200px;
+  margin-left: 300px;
 }
 
 .input{
@@ -101,10 +99,10 @@ p1{
 
 .regbtn{
   margin-top: 30px;
-  margin-left: 280px;
+  margin-left: 360px;
 }
 
 .inputmsg{
-    float: left;
+  float: left;
 }
 </style>
