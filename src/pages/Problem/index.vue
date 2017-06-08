@@ -8,8 +8,9 @@
   </el-tab-pane>
      <el-tab-pane name="second">
     <span slot="label"><i class="fa fa-newspaper-o "></i>提交记录</span>
+    <sumbit-history :problem="problem" ></sumbit-history>
   </el-tab-pane>
-  
+
   </el-tabs>
   
 </div>
@@ -19,7 +20,7 @@
 import { mapState } from 'vuex'
 import store from 'src/store'
 import ProblemDetail from './ProblemDetail'
-
+import SumbitHistory from './SumbitHistory'
 export default {
   computed: {
     ...mapState({
@@ -43,6 +44,7 @@ export default {
     await next()
   },
   components: {
+    SumbitHistory,
     ProblemDetail
   }
 }
