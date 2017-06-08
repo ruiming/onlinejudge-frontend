@@ -31,11 +31,17 @@
   </div>
 </el-col>
  <el-col :sm="0" :md="6" offset="2">
-   <ul class="submittable">
-  <li><i class="fa-li fa fa-check-square"></i>can be used</li>
-  <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
-  <li><i class="fa-li fa fa-square"></i>in lists</li>
+   <ul class="submittable"> 
+  <li class="sumbitcount">提交数量：none</li>
+  <li>通过数量：none</li>
+  <li>通 过 率：none</li>
+  <li>作    者：none</li>
 </ul>
+<div> <i class="fa fa-bookmark" aria-hidden="true"></i>相关推荐:</div>
+<el-tag v-for="tag in tags" :key="tag.name"
+  :closable="true" :close-transition="false":color="tag.color" @close="handleClose(tag)" 
+>{{tag.name}}
+</el-tag>
 
 
  </el-col>
@@ -44,6 +50,7 @@
 
 <script>
 import { codemirror } from 'vue-codemirror'
+
 export default {
   name: 'problem-detail',
   props: ['problem'],
@@ -55,7 +62,13 @@ export default {
         mode: 'text/x-c++src',
         lineNumbers: true,
         line: true
-      }
+      },
+      tags: [{ name: '标签一', color: '#FF6633' },
+          { name: '标签二', color: '#F7BA2A' },
+          { name: '标签三', color: '#50BFFF' },
+          { name: '标签四', color: '#13CE66' },
+          { name: '标签五', color: '#BBB' },
+          { name: '标签六', color: '#FF4949' }]
     }
   },
   computed: {
@@ -82,6 +95,11 @@ export default {
         code: this.code,
         lang: 'cc'
       })
+    },
+    handleClose (tag) {
+      this.tags.splice(this.tags.indexOf(tag), 1)
+      this.inputVisible = false
+      this.inputValue = ''
     }
   },
   components: [
@@ -126,15 +144,42 @@ export default {
   padding-bottom: 5px;
   padding-top: 5px;
 }
+.submittable{
+  font-size: 16px;
+  color:#1F83CE;
+  height: 180px;
+  background-image: url(../../assets/background.png);
+   background-repeat:no-repeat;
+    background-position:center;
+   line-height: 30px;
+  
+}
 .fa.fa-files-o{
 width: 18px;
 height: 18px;
 color: #666666;
 
 }
+
 .fa.fa-step-forward{
   width: 12px;
   height: 18px;
   color: #6DB773;
+}
+.sumbitcount{
+ height: 50px;
+ line-height: 70px;
+}
+.fa.fa-bookmark{
+  color: #FF6633;
+ width: 16px;
+ height: 19px;
+}
+.wordfont{
+  font-size: 14px;
+  color: #111;
+  width: 100px;
+  height: 19px;
+  
 }
 </style>

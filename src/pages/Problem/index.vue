@@ -2,11 +2,14 @@
 <div>
   <h2 class="problemtitlefont">{{problem.id}}. {{problem.title}}</h2>
   <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
-    <el-tab-pane  label="题目描述" name="first"> 
-      <problem-detail :problem="problem"></problem-detail>
-    </el-tab-pane>
-    <el-tab-pane label="提交记录" name="second"></el-tab-pane>
-
+    <el-tab-pane name="first">
+    <span slot="label"><i class="fa fa-bars"></i>题目描述</span>
+     <problem-detail :problem="problem"></problem-detail>
+  </el-tab-pane>
+     <el-tab-pane name="second">
+    <span slot="label"><i class="fa fa-newspaper-o "></i>提交记录</span>
+  </el-tab-pane>
+  
   </el-tabs>
   
 </div>
