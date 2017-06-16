@@ -7,15 +7,16 @@ import Security from 'src/pages/User/Security'
 import Logout from 'src/pages/User/Logout'
 import Register from 'src/pages/Register'
 import SignIn from 'src/pages/SignIn'
+import RegainPassword from 'src/pages/User/RegainPassword'
 
 Vue.use(Router)
 
 // 路由
 export default new Router({
   routes: [{
-    path: '/signin',
-    name: 'SignIn',
-    component: SignIn
+    path: '/home',
+    name: 'Home',
+    component: Home
   }, {
     path: '/problemset',
     name: 'ProblemSet',
@@ -29,9 +30,9 @@ export default new Router({
     name: 'Register',
     component: Register
   }, {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: '/',
+    name: 'SignIn',
+    component: SignIn
   }, {
     path: '/user/security',
     name: 'Security',
@@ -40,5 +41,9 @@ export default new Router({
     path: '/user/logout',
     name: 'Logout',
     component: Logout
+  }, {
+    path: '/user/regainpassword',
+    name: 'RegainPassword',
+    component: RegainPassword
   }]
 })

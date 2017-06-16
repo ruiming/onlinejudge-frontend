@@ -10,7 +10,7 @@
         <el-menu-item index="/articles">文章</el-menu-item>
         <el-menu-item index="/discuss">讨论</el-menu-item>
         -->
-        <div v-if="login()">
+        <div>
         <el-submenu index="/" class="user-menu">
           <template slot="title">用户XXX</template>
           <!--
@@ -55,11 +55,7 @@ export default {
       this.$router.push({path: '/register'})
     },
     signin: function () {
-      this.$router.push({path: '/signin'})
-    },
-    login: function () {
-      var note = true
-      return note
+      this.$router.push({path: '/'})
     }
   }
 }

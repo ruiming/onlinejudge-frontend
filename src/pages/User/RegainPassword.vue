@@ -1,10 +1,10 @@
 <template>
-<div class="security">
-<div class="title"><p>更改密码</p></div>
+<div class="regainpw">
+<div class="title"><p>找回密码</p></div>
     <div class="firstinput">
-        <p1>原&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;</p1>
+        <p1>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</p1>
         <div class="inputmsg">
-        <el-input placeholder="请输入原密码" v-model="input"></el-input>
+        <el-input placeholder="请输入邮箱" v-model="input"></el-input>
         </div>
     </div><br><br>
     <div class="input">
@@ -25,14 +25,14 @@
     </div><br>
 
     <div class="changebtn">
-        <el-button @click="back">放弃更改</el-button>
-        <el-button type="primary" @click="visible = true">确认更改</el-button>
+        <el-button @click="back">&nbsp;&nbsp;返&nbsp;&nbsp;回&nbsp;&nbsp;</el-button>
+        <el-button type="primary" @click="visible = true">&nbsp;&nbsp;确&nbsp;&nbsp;定&nbsp;&nbsp;</el-button>
     </div>  
 
 <hsy-dialog class="tip" v-model="visible">
   <div slot="title">提&nbsp;&nbsp;示</div>
   <div slot="body">
-    <div>密码更改成功！请重新登陆！</div>
+    <div>密码重置成功！请重新登陆！</div>
     <div class="btngroup">
       <el-button type="primary" v-on:click="change">确 定</el-button>
     </div>
@@ -57,7 +57,7 @@ export default {
       this.$router.push({path: '/'})
     },
     back: function () {
-      this.$router.push({path: '/home'})
+      this.$router.push({path: '/'})
     }
   }
 }
@@ -73,7 +73,7 @@ export default {
   width: 360px;
 }
 
-.security{
+.regainpw{
   background-color: #eef1f6;
   padding: 20px;
   margin-top: 40px;

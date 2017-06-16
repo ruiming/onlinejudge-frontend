@@ -2,7 +2,7 @@
 <div class="welcome">
 <div class="title"><p>退出成功！</p></div>
 <div class="tipmsg"><p>3秒钟后自动跳转回登录页</p></div>
-<meta http-equiv="refresh" content="3;URL=http://localhost:8080/#/signin"></meta> 
+<meta http-equiv="refresh" content="3;URL=http://localhost:8080/#/"></meta> 
 
 </div>
 </template>

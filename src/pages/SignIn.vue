@@ -8,18 +8,18 @@
     <div class="input">
         <p1>用户名：</p1>
         <div class="inputmsg">
-        <el-input placeholder="请输入用户名或邮箱" v-model="input"></el-input>
+        <el-input name="username" placeholder="请输入用户名或邮箱" v-model="input"></el-input>
         </div>
     </div><br><br>
     <div class="input">
         <p1>密&nbsp;&nbsp;&nbsp;&nbsp;码：</p1>
         <div class="inputmsg">
-        <el-input placeholder="请输入密码" v-model="input"></el-input>
+        <el-input name="password" placeholder="请输入密码" v-model="input"></el-input>
         </div>
     </div><br>
 
     <div class="signbtngroup">
-        <el-button>忘记密码?</el-button>
+        <el-button v-on:click="forget">忘记密码?</el-button>
         <el-button type="primary" v-on:click="login">&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;</el-button>
     </div>  
 
@@ -50,6 +50,9 @@ export default {
     },
     login: function () {
       this.$router.push({path: '/home'})
+    },
+    forget: function () {
+      this.$router.push({path: '/user/regainpassword'})
     }
   }
 }
