@@ -9,15 +9,14 @@ import App from 'src/App'
 import router from 'src/router'
 import store from 'src/store'
 import 'src/resource'
-
 import 'element-ui/lib/theme-default/index.css'
 import 'normalize.css'
-
+import echarts from 'echarts'
 moment.locale('zh-cn')
 Vue.use(ElementUI)
 Vue.use(VueHead, { separator: '-' })
 Vue.use(VueCodeMirror)
-
+Vue.prototype.$echarts = echarts
 /* eslint-disable no-new */
 new Vue({
   store,

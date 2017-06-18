@@ -1,37 +1,14 @@
 <template>
-<el-row :gutter="10">
-  <el-col :sm="20" :md="14" class="media-list">
+<div>
     <div v-for="problem in problems" class="media">
       <h4>
         <i class="fa fa-file-text-o" aria-hidden="true"></i>
-        {{problem.user.name}}<span> 发布了新题</span> {{problem.title}}
+        {{problem.user.avatar}}<span> 发布了新题</span> {{problem.title}}
       <i class="fa fa-star" aria-hidden="true"></i>
       </h4>
       <p class="p2">{{problem.description}}</p>
     </div>
-  </el-col>
-  <el-col :sm="0" :md="6" offset="4">
-    <i class="fa fa-trophy fa-5x" aria-hidden="true"></i>
-    <div class="left_position">
-    <div class="title"><h>SCNU Online</h></div>
-     <div class="title"><h>Judge Contest</h></div>
-     <p class="p1">Participate and win your</p><p class="p1"> prizes</p>  
-    <div class="button"><p><el-button type="primary">Let's race!</el-button></p></div>  
-    </div>
-    <i class="fa fa-comments-o fa-5x" aria-hidden="true"></i>
-    <div class="left_position">
-    <div class="title"><h>Discuss now</h></div>
-     <p class="p1">Share interview question</p>
-     <p class="p1">Get solutions</p>
-    <div class="button"><p><el-button type="primary">Let's join us!</el-button></p></div>
-    </div>
-    <div class="left_position">
-    <div class="title"><h>Articles</h></div>
-     <p class="p1">Here is the only official editorials/solution you will find</p>
-    <p class="p1"><el-button type="primary">Welcome</el-button></p>
-    </div>
-  </el-col>
-</el-row>
+</div>
 </template>
 
 <script>
@@ -47,6 +24,14 @@ export default {
   async beforeRouteEnter (to, from, next) {
     await store.dispatch('getProblems', { limit: 50, offset: 0 })
     await next()
+  },
+  async created () {
+    this.$store.dispatch('getProblems', {
+      limit: 20,
+      offset: 0,
+      order: 'asc',
+      sortby: 'id'
+    })
   }
 }
 </script>

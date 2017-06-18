@@ -3,14 +3,14 @@
 <el-table
     :data="tableData"
     border
-    style="width: 100%">   
+    style="width: 100%">  
     <el-table-column   prop="name"  label="用户名" width="150">
     </el-table-column>
-     <a  href="#" >
-     <el-table-column prop="result" label="运行结果" width="150">
-      
-     
-    </el-table-column> </a>
+     <el-table-column label="运行结果"  width="150">
+      <template scope="scope">
+         <el-button @click="handleClick(scope.row.result)" type="text" >{{ scope.row.result }}</el-button>
+      </template>
+       </el-table-column>
      <el-table-column  prop="spcace" label="内存占用" width="150">
     </el-table-column>
      <el-table-column  prop="runningtime" label="运行时间" width="150">
@@ -77,6 +77,19 @@ export default {
     },
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
+    },
+    handleClick (result) {
+      if (result === 'Acceppted') {
+        this.$router.push({path: '/runningsuccess',
+          query: {
+            problem: this.problem
+          }})
+      } else {
+        this.$router.push({path: '/runningwrong',
+          query: {
+            problem: this.problem
+          }})
+      }
     }
   }
 }
@@ -86,5 +99,9 @@ export default {
 .block{
   margin-left: 20%;
   margin-top: 10%;
+}
+.result_style{
+  text-decoration: none;
+ 
 }
 </style>
