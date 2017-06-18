@@ -3,12 +3,7 @@
     <el-menu :default-active="$route.path" :router="true" mode="horizontal">
       <div class="container">
         <el-menu-item index="/">主页</el-menu-item>
-        <el-submenu  >
-          <template slot="title">题库</template>
-          <el-menu-item index="/problemset">C++</el-menu-item>
-          <el-menu-item index="">Java</el-menu-item>
-          <el-menu-item index="">Python</el-menu-item>
-        </el-submenu>
+         <el-menu-item index="/problemset">题库</el-menu-item>
        <!-- <el-menu-item index="/competitions">比赛</el-menu-item>
         <el-menu-item index="/articles">文章</el-menu-item>
         <el-menu-item index="/discuss">讨论</el-menu-item>-->

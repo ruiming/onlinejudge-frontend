@@ -32,11 +32,12 @@
 </el-col>
  <el-col :sm="0" :md="6" offset="2">
    <ul class="submittable"> 
-  <li class="sumbitcount">提交数量：none</li>
-  <li>通过数量：none</li>
-  <li>通 过 率：none</li>
-  <li>作    者：none</li>
+  <li class="sumbitcount">提交数量：{{problem.submitCount}}</li>
+  <li>通过数量：{{problem.passCount}}</li>
+  <li>通 过 率：{{problem.percent}}</li>
+  <li>作    者：{{problem.user.avatar}}</li>
 </ul>
+<p>{{recommend.title}}</p>
 <div> <i class="fa fa-bookmark" aria-hidden="true"></i>相关推荐:</div>
 <el-tag v-for="tag in tags" :key="tag.name"
   :closable="true" :close-transition="false":color="tag.color" @close="handleClose(tag)" 
@@ -53,7 +54,7 @@ import { codemirror } from 'vue-codemirror'
 
 export default {
   name: 'problem-detail',
-  props: ['problem'],
+  props: ['problem', 'recommend'],
   data () {
     return {
       code: '',

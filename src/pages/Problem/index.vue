@@ -4,7 +4,7 @@
   <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
     <el-tab-pane name="first">
     <span slot="label"><i class="fa fa-bars"></i>题目描述</span>
-     <problem-detail :problem="problem"></problem-detail>
+     <problem-detail :problem="problem" :recommend="recommend"></problem-detail>
   </el-tab-pane>
      <el-tab-pane name="second">
     <span slot="label"><i class="fa fa-newspaper-o "></i>提交记录</span>
@@ -24,7 +24,8 @@ import SubmitHistory from './SubmitHistory'
 export default {
   computed: {
     ...mapState({
-      problem: state => state.problem
+      problem: state => state.problem,
+      recommend: state => state.recommend
     })
   },
   data () {
@@ -40,7 +41,8 @@ export default {
   async beforeRouteEnter (to, from, next) {
     await store.dispatch('getProblemById', {
       id: to.params.id
-    })
+    }, 'getProblemRecommendById', {
+      id: to.params.id})
     await next()
   },
   components: {

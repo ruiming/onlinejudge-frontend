@@ -21,7 +21,7 @@ export default {
     }
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getProblems', { limit: 50, offset: 0 })
+    await store.dispatch('getProblems', { limit: 50, offset: 0, order: 'asc', sortby: 'id' })
     await next()
   }
 }
