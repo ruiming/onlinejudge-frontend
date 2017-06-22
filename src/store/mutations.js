@@ -8,5 +8,17 @@ export default {
   /** 存储一道题 */
   [types.RECEIVE_PROBLEM] (state, { data }) {
     state.problem = data
+  },
+   /** 存储一道题详细推荐 */
+  [types.RECEIVE_PROBLEM_RECOMMEND] (state, { data }) {
+    state.recommend = data
+  },
+   /** 存储提交情况 */
+  [types.SUBMISSION] (state, {data}) {
+    state.submission = data
+  },
+   /** 存储提交情况 */
+  [types.SUBMISSIONS] (state, {data}) {
+    state.submissions = data
   }
 }

@@ -30,20 +30,18 @@
     <el-button type="primary" @click="submit">提交</el-button>
   </div>
 </el-col>
- <el-col :sm="0" :md="6" offset="2">
+ <el-col :sm="0" :md="6" :offset= 2>
    <ul class="submittable"> 
   <li class="sumbitcount">提交数量：{{problem.submitCount}}</li>
   <li>通过数量：{{problem.passCount}}</li>
   <li>通 过 率：{{problem.percent}}</li>
   <li>作    者：{{problem.user.avatar}}</li>
 </ul>
-<p>{{recommend.title}}</p>
 <div> <i class="fa fa-bookmark" aria-hidden="true"></i>相关推荐:</div>
-<el-tag v-for="tag in tags" :key="tag.name"
-  :closable="true" :close-transition="false":color="tag.color" @close="handleClose(tag)" 
->{{tag.name}}
+<el-tag v-for="tag in recommend" :key="tag.title"
+  :closable="true" :close-transition="false" type="primary"  @close="handleClose(tag)" 
+>{{tag.title}}
 </el-tag>
-
 
  </el-col>
 </el-row>
@@ -51,7 +49,6 @@
 
 <script>
 import { codemirror } from 'vue-codemirror'
-
 export default {
   name: 'problem-detail',
   props: ['problem', 'recommend'],
@@ -64,7 +61,7 @@ export default {
         lineNumbers: true,
         line: true
       },
-      tags: [{ name: '标签一', color: '#FF6633' },
+      tags: [{ name: '', color: '#FF6633' },
           { name: '标签二', color: '#F7BA2A' },
           { name: '标签三', color: '#50BFFF' },
           { name: '标签四', color: '#13CE66' },
@@ -94,11 +91,11 @@ export default {
       await this.$store.dispatch('submitUserCode', {
         id: this.problem.id,
         code: this.code,
-        lang: 'cc'
+        lang: 'c++'
       })
     },
     handleClose (tag) {
-      this.tags.splice(this.tags.indexOf(tag), 1)
+      this.recommend.splice(this.recommend.indexOf(tag), 1)
       this.inputVisible = false
       this.inputValue = ''
     }
