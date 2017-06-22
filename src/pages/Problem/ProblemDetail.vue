@@ -49,9 +49,10 @@
 
 <script>
 import { codemirror } from 'vue-codemirror'
+import { mapState } from 'vuex'
 export default {
   name: 'problem-detail',
-  props: ['problem', 'recommend'],
+  props: ['problem', 'recommend', 'submissions'],
   data () {
     return {
       code: '',
@@ -60,16 +61,14 @@ export default {
         mode: 'text/x-c++src',
         lineNumbers: true,
         line: true
-      },
-      tags: [{ name: '', color: '#FF6633' },
-          { name: '标签二', color: '#F7BA2A' },
-          { name: '标签三', color: '#50BFFF' },
-          { name: '标签四', color: '#13CE66' },
-          { name: '标签五', color: '#BBB' },
-          { name: '标签六', color: '#FF4949' }]
+      }
     }
   },
   computed: {
+    ...mapState({
+      submission: state => state.submission,
+      submissionisaccepted: state => state.submissionisaccepted
+    }),
     supplement () {
       return [{
         name: 'Input',
@@ -93,6 +92,41 @@ export default {
         code: this.code,
         lang: 'c++'
       })
+      if (this.submission.success === 'false') {
+        this.$alert('提交失败', {
+          confirmButtonText: '确定'
+        })
+      } else {
+        this.$confirm('提交成功, 结果出来后系统将会通知您', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.$router.push({path: `/SubmitHistory`,
+            query: {
+              submissions: this.submissions
+            }})
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消'
+          })
+        })
+        while ((this.submissionisaccepted.data == null) && (this.submissionisaccepted.success === 'true')) {
+          await this.$store.dispatch('submitisaccepted', {
+            id: this.submission
+          })
+        }
+        if (this.submissionisaccepted.success === 'false') {
+          this.$notify.error({
+            message: '判题失败'
+          })
+        } else {
+          this.$notify.info({
+            message: '您好！您在' + this.submissionisaccepted.data.realTime + '提交题号' +
+             this.submissionisaccepted.data.id + '的运行结果为：' + this.submissionisaccepted.data.result
+          })
+        }
+      }
     },
     handleClose (tag) {
       this.recommend.splice(this.recommend.indexOf(tag), 1)

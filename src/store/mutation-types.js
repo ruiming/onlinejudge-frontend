@@ -8,4 +8,6 @@ export const RECEIVE_PROBLEM_RECOMMEND = 'RECEIVE_PROBLEM_RECOMMEND'
 export const SUBMISSION = 'SUBMISSION'
 /** 得到提交情况 */
 export const SUBMISSIONS = 'SUBMISSIONS'
+/** 查看提交后得到答题的结果 */
+export const SUBMISSIONISACCEPTED = 'SUBMISSIONISACCEPTED'
 

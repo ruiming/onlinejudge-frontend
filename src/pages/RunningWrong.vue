@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h2 class="problemtitlefont">sdhjsfhkfh</h2>
+  <h2 class="problemtitlefont">{{problem.id}}}</h2>
    <div class="line"></div>
  
 <li>Compile Error或者Wrong Answer</li>

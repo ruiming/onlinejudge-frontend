@@ -2,7 +2,7 @@
  * 所有 XHR 请求都写在这里
  * 请求返回值通过 COMMIT 一个 MUTATION-TYPE 修改状态树
  */
-import { Problem, Submission, Recommend } from '../resource'
+import { Problem, Submission, Recommend, Submissionisaccepted } from '../resource'
 import * as types from './mutation-types'
 
 /** 获取题目列表 */
@@ -29,7 +29,7 @@ export const getProblemRecommendById = ({ commit, state }, { id }) => {
 /** 提交用户代码进行判题 */
 export const submitUserCode = ({ commit, state }, { id, code, lang }) => {
   return Submission.save({ id, code, lang }).then(res => {
-    console.log(res)
+    commit(types.SUBMISSION, res)
   }).catch(() => {})
 }
 
@@ -37,6 +37,12 @@ export const submitUserCode = ({ commit, state }, { id, code, lang }) => {
 export const submitUser = ({ commit, state }, { offset, limit, all, problemId }) => {
   return Submission.get({ offset, limit, all, problemId }).then(res => {
     commit(types.SUBMISSIONS, res.data)
+  }).catch(() => {})
+}
+/** 查看该题提交后是否accepted */
+export const submitisaccepted = ({ commit, state }, {id}) => {
+  return Submissionisaccepted.get({ id }).then(res => {
+    commit(types.SUBMISSIONISACCEPTED, res)
   }).catch(() => {})
 }
 

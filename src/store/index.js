@@ -14,7 +14,8 @@ const state = {
   problem: {},               // 单道题详情
   recommend: [],                // 单道题的其他推荐
   submissions: {},                  // 提交情况
-  submission: {}                  // 提交情况
+  submission: {},                  // 提交情况
+  submissionisaccepted: {}               // 提交后是否accepted
 }
 
 export default new Vuex.Store({

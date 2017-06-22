@@ -14,11 +14,15 @@ export default {
     state.recommend = data
   },
    /** 存储提交情况 */
-  [types.SUBMISSION] (state, {data}) {
-    state.submission = data
+  [types.SUBMISSION] (state, res) {
+    state.submission = res
   },
    /** 存储提交情况 */
   [types.SUBMISSIONS] (state, {data}) {
     state.submissions = data
+  },
+  /** 存储提交情况 */
+  [types.SUBMISSIONISACCEPTED] (state, {res}) {
+    state.submissionisaccepted = res
   }
 }
