@@ -5,22 +5,18 @@
   <p>OJ是一个提高编码技术的平台。从一个不断扩展的问题库中挑选
         问题，<br>并提交您的解决方案，看看您是否正确地解决了它。就是这么简单!</p>
 </div>
-    <div class="input">
-        <p1>用户名：</p1>
-        <div class="inputmsg">
-        <el-input name="username" placeholder="请输入用户名或邮箱" v-model="input"></el-input>
-        </div>
-    </div><br><br>
-    <div class="input">
-        <p1>密&nbsp;&nbsp;&nbsp;&nbsp;码：</p1>
-        <div class="inputmsg">
-        <el-input name="password" placeholder="请输入密码" v-model="input"></el-input>
-        </div>
+    <div class="inputgroup">
+      <span class="p2">账&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
+      <el-input  class="inputmsg" name="username" placeholder="请输入用户名或邮箱" v-model="account"></el-input>
+    </div><br>
+    <div class="inputgroup">
+      <span class="p2">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+      <el-input class="inputmsg" name="password" placeholder="请输入密码" v-model="password"></el-input>
     </div><br>
 
     <div class="signbtngroup">
-        <el-button v-on:click="forget">忘记密码?</el-button>
-        <el-button type="primary" v-on:click="login">&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;</el-button>
+      <el-button v-on:click="forget">忘记密码?</el-button>
+      <el-button type="primary" v-on:click="login">&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;</el-button>
     </div>  
 
 <hsy-dialog class="tip" v-model="visible">
@@ -40,7 +36,9 @@
 export default {
   data () {
     return {
-      visible: false
+      visible: false,
+      account: '',
+      password: ''
     }
   },
   methods: {
@@ -70,7 +68,7 @@ export default {
   font-size: 16px;
   color:#8492a6;
   line-height: 140%;
-  margin-left: 200px;
+  text-align: center;
 }
 
 .welcome{
@@ -79,27 +77,29 @@ export default {
   margin-top: 40px;
   margin-left: 20px;
   margin-right: 20px;
-  height: 350px;
+  height: 380px;
 }
 
-p1{
+.p2{
+  padding: 8px;
   font-size: 18px;
   color: #20a0ff;
   float: left;
-  padding: 5px;
-  margin-left: 300px;
 }
 
-.input{
-  padding: 10px;
+.inputgroup{
+  padding: 5px;
+  height: 30px;
+  margin-left: 280px;
 }
 
 .signbtngroup{
-  margin-top: 30px;
-  margin-left: 340px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .inputmsg{
   float: left;
+  width: 200px;
 }
 </style>

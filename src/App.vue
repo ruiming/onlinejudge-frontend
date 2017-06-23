@@ -2,7 +2,7 @@
   <div id="app">
     <el-menu :default-active="$route.path" :router="true" mode="horizontal">
       <div class="container">
-        <el-menu-item><h>SCNU OJ</h></el-menu-item>
+        <el-menu-item index="/"><span class="signal">SCNU OJ</span></el-menu-item>
         <el-menu-item index="/home">主页</el-menu-item>
         <el-menu-item index="/problemset">题库</el-menu-item>
         <!--
@@ -96,7 +96,7 @@ body {
   padding: 12px;
 }
 
-h{
+.signal {
   color:#20a0ff;
   font-size: 20px;
 }

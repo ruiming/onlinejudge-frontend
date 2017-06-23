@@ -1,25 +1,25 @@
 <template>
 <div class="regainpw">
-<div class="title"><p>找回密码</p></div>
+<div class="title"><p>重置密码</p></div>
     <div class="firstinput">
-        <p1>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</p1>
+        <span class="p1">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</span>
         <div class="inputmsg">
-        <el-input placeholder="请输入邮箱" v-model="input"></el-input>
+        <el-input placeholder="请输入邮箱" v-model="email"></el-input>
         </div>
     </div><br><br>
     <div class="input">
-        <p1>新&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;</p1>
+        <span class="p1">新&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;</span>
         <div class="inputmsg">
         <el-tooltip effect="dark" content="密码由6到18位数字或字母组成" placement="bottom">
-        <el-input placeholder="请输入新密码" v-model="input"></el-input>
+        <el-input placeholder="请输入新密码" v-model="newpassword"></el-input>
         </el-tooltip>
         </div>
     </div><br><br>
     <div class="input">
-        <p1>确认新密码：&nbsp;&nbsp;</p1>
+        <span class="p1">确认新密码：&nbsp;&nbsp;</span>
         <div class="inputmsg">
         <el-tooltip effect="dark" content="密码由6到18位数字或字母组成" placement="bottom">
-        <el-input placeholder="请再次输入新密码" v-model="input"></el-input>
+        <el-input placeholder="请再次输入新密码" v-model="confirmpassword"></el-input>
         </el-tooltip>
         </div>
     </div><br>
@@ -32,7 +32,7 @@
 <hsy-dialog class="tip" v-model="visible">
   <div slot="title">提&nbsp;&nbsp;示</div>
   <div slot="body">
-    <div>密码重置成功！请重新登陆！</div>
+    <div>重置密码成功！请重新登陆！</div>
     <div class="btngroup">
       <el-button type="primary" v-on:click="change">确 定</el-button>
     </div>
@@ -45,7 +45,10 @@
 export default {
   data () {
     return {
-      visible: false
+      visible: false,
+      email: '',
+      newpassword: '',
+      confirmpassword: ''
     }
   },
   methods: {
@@ -82,7 +85,7 @@ export default {
   height: 350px;
 }
 
-p1{
+.p1{
   font-size: 18px;
   color: #20a0ff;
   float: left;

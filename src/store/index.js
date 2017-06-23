@@ -11,7 +11,9 @@ const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
   problems: [],             // 全部题目
-  problem: {}               // 单道题详情
+  problem: {},               // 单道题详情
+  UserRegisterMsg: '',
+  user: {}
 }
 
 export default new Vuex.Store({
