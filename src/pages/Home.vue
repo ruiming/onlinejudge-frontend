@@ -24,14 +24,6 @@ export default {
   async beforeRouteEnter (to, from, next) {
     await store.dispatch('getProblems', { limit: 20, offset: 0, order: 'asc', sortby: 'id' })
     await next()
-  },
-  async created () {
-    this.$store.dispatch('getProblems', {
-      limit: 20,
-      offset: 0,
-      order: 'asc',
-      sortby: 'id'
-    })
   }
 }
 </script>

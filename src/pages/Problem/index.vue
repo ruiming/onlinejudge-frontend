@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h2 class="problemtitlefont">{{problem.id}}. {{problem.title}}</h2>
+  <h2 class="problem-title-font">{{problem.id}}. {{problem.title}}</h2>
   <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
     <el-tab-pane name="first">
     <span slot="label"><i class="fa fa-bars"></i>题目描述</span>
@@ -45,7 +45,7 @@ export default {
     })
     await store.dispatch('getProblemRecommendById', {
       id: to.params.id})
-    await store.dispatch('submitUser', {
+    await store.dispatch('submitUserCondition', {
       offset: 0, limit: 20, all: true, problemId: to.params.id })
     await next()
   },
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-.problemtitlefont{
+.problem-title-font{
   font-size: 20px;
   font-style:italic;
   color: #717273;

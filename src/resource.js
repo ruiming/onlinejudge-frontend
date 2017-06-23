@@ -8,7 +8,7 @@ Vue.http.options.root = process.env.API_ROOT
 const Problem = Vue.resource('problems{/id}')
 const Submission = Vue.resource('submissions{/id}')
 const Recommend = Vue.resource('problems/{id}/recommend')
-const Submissionisaccepted = Vue.resource('submissions/{id}/stat')
+const SubmissionIsAccepted = Vue.resource('submissions/{id}/stat')
 Vue.http.interceptors.push((request, next) => {
   next(response => {
     if (response.status !== 200) {
@@ -25,5 +25,5 @@ export {
   Problem,
   Submission,
   Recommend,
-  Submissionisaccepted
+  SubmissionIsAccepted
 }

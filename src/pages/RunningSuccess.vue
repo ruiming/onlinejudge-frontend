@@ -1,13 +1,13 @@
 <template>
 <div>
-  <h2 class="problemtitlefont">sdhjsfhkfh</h2>
+  <h2 class="problem-title-font">sdhjsfhkfh</h2>
    <div class="line"></div>
  
 <li>Accepted</li>
-  <div class="testcondition"> 
-     <h4 class="h4test"> 18/18测试者通过该题目</h4>
-     <h4  class="h4test"> 运行时间：45s</h4>
-     <h4 class="h4time">提交时间：1天</h4>
+  <div class="test-condition"> 
+     <h4 class="h4-test"> 18/18测试者通过该题目</h4>
+     <h4  class="h4-test"> 运行时间：45s</h4>
+     <h4 class="h4-time">提交时间：1天</h4>
    </div>
     <div class="line"></div>
     <h4>运行时间分析表图：</h4>
@@ -16,7 +16,7 @@
      <div class="usercode">
    <h4>我的代码：</h4>
    <h4>语言：c++</h4>
-   <div class="codemirrorfont">
+   <div class="codemirror-font">
     <codemirror  v-model="code" :options="editorOption"></codemirror>
    </div>
   </div>
@@ -28,10 +28,10 @@
 </template>
 
 <script>
-let echarts = require('echarts/lib/echarts')
-require('echarts/lib/chart/bar')
-require('echarts/lib/component/tooltip')
-require('echarts/lib/component/title')
+import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/title'
 import { codemirror } from 'vue-codemirror'
 export default {
   props: ['problem'],
@@ -96,7 +96,7 @@ li{
     font-size: 40px;
     color: #999;
 }
-.problemtitlefont{
+.problem-title-font{
   font-size: 20px;
   font-style:italic;
   color: #6699FF;
@@ -107,13 +107,13 @@ li{
   margin-bottom: 10px;
   margin-top: 10px;
 }
-.h4time{
+.h4-time{
   margin-left: 80%;
 }
-.h4test{
+.h4-test{
   margin-left: 2%;
 }
-.testcondition{
+.test-condition{
   border: 1px solid #eee;
   margin-top: 10px;
   color:  #48576A;
@@ -121,7 +121,7 @@ li{
 h4{
   color:  #48576A;
 }
-.codemirrorfont{
+.codemirror-font{
   border: 1px outset #eee;
 }
 .usercode {

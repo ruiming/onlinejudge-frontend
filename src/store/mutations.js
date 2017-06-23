@@ -23,6 +23,6 @@ export default {
   },
   /** 存储提交情况 */
   [types.SUBMISSIONISACCEPTED] (state, {res}) {
-    state.submissionisaccepted = res
+    state.submissionisAccepted = res
   }
 }
