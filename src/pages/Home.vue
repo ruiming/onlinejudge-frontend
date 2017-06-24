@@ -1,15 +1,10 @@
 <template>
-<el-row :gutter="10">
-  <el-col :sm="24" :md="18" class="media-list">
-    <div v-for="problem in problems" class="media">
-      <h4>{{problem.user.name}} 发布了新题 {{problem.title}}</h4>
-      <p>{{problem.description}}</p>
-    </div>
-  </el-col>
-  <el-col :sm="0" :md="6">
-   
-  </el-col>
-</el-row>
+<div>
+  <div v-for="problem in problems" class="media">
+    <h4>{{problem.user.name}}<span> 发布了新题</span> {{problem.title}}</h4>
+    <p>{{problem.description}}</p>
+  </div>
+</div>
 </template>
 
 <script>
@@ -22,7 +17,7 @@ export default {
     })
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getProblems', { limit: 50, offset: 0 })
+    await store.dispatch('getProblems', { limit: 50, offset: 0, order: 'asc', sortby: 'id' })
     await next()
   }
 }
@@ -36,5 +31,14 @@ export default {
 .media {
   overflow: hidden;
   border-bottom: 1px solid #eee;
+}
+h4{
+  color:#20a0ff;
+}
+h4 span{
+  color:#8492a6;
+}
+p{
+  line-height: 180%;
 }
 </style>

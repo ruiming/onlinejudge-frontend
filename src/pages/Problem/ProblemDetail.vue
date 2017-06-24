@@ -14,7 +14,6 @@
     <codemirror v-model="code" :options="editorOption"></codemirror>
   </div>
   <div class="btn-group">
-    <el-button>运行</el-button>
     <el-button type="primary" @click="submit">提交</el-button>
   </div>
 </div>
@@ -69,9 +68,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.description{
+  line-height:180%; 
+}
 .supplement {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
+  line-height:180%;
 }
 .usercode {
   padding: 10px 0;
