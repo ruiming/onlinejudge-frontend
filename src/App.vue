@@ -33,11 +33,11 @@ import store from './store'
 export default {
   computed: {
     ...mapState({
-      user: state => state.user
+      user: state => state.user.user
     })
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getUser')
+    await store.dispatch('user/getUser')
     await next()
   },
   methods: {

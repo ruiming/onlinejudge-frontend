@@ -1,30 +1,30 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createLogger from 'vuex/dist/logger'
-import * as actions from './actions'
-import * as getters from './getters'
-import mutations from './mutations'
+import createPersistedState from 'vuex-persistedstate'
+import problem from './module/problem'
+import submission from './module/submission'
+import user from './module/user'
 
 Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production'
-
-const state = {
-  problems: [],             // 全部题目
-  problem: {},               // 单道题详情
-  recommend: [],                // 单道题的其他推荐
-  submissions: {},                  // 提交情况
-  submission: {},                  // 提交情况
-  submissionisAccepted: {},               // 提交后是否accepted
-  UserRegisterMsg: '',
-  user: {}
+const modules = {
+  problem,
+  submission,
+  user
 }
 
-export default new Vuex.Store({
-  state,
-  actions,
-  getters,
-  mutations,
-  strict: debug,
-  plugins: debug ? [createLogger()] : []
+const initialStateJson = JSON.stringify(new Vuex.Store({
+  modules
+}).state)
+
+const store = new Vuex.Store({
+  modules,
+  plugins: [createPersistedState()],
+  mutations: {
+    resetStore () {
+      store.replaceState((JSON.parse(initialStateJson)))
+    }
+  }
 })
+
+export default store

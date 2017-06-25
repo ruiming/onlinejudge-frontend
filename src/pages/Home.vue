@@ -17,11 +17,11 @@ import 'font-awesome/css/font-awesome.css'
 export default {
   computed: {
     ...mapState({
-      problems: state => state.problems
+      problems: state => state.problem.problems
     })
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getProblems', { limit: 20, offset: 0, order: 'asc', sortby: 'id' })
+    await store.dispatch('problem/getProblems', { limit: 20, offset: 0, order: 'asc', sortby: 'id' })
     await next()
   }
 }

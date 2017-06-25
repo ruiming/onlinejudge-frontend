@@ -66,8 +66,8 @@ export default {
   },
   computed: {
     ...mapState({
-      submission: state => state.submission,
-      submissionisAccepted: state => state.submissionisAccepted
+      submission: state => state.submission.submission,
+      submissionisAccepted: state => state.submission.submissionisAccepted
     }),
     supplement () {
       return [{
@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     async submit () {
-      await store.dispatch('submitUserCode', {
+      await store.dispatch('submission/submitUserCode', {
         id: this.problem.id,
         code: this.code,
         lang: 'c++'
@@ -112,7 +112,7 @@ export default {
           })
         })
         while ((this.submissionisAccepted.data == null) && (this.submissionisAccepted.success === true)) {
-          await store.dispatch('submitIsAccepted', {
+          await store.dispatch('submission/submitIsAccepted', {
             id: this.submission
           })
         }

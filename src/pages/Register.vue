@@ -50,7 +50,7 @@ import store from 'src/store'
 export default {
   computed: {
     ...mapState({
-      UserRegisterMsg: state => state.UserRegisterMsg
+      UserRegisterMsg: state => state.user.UserRegisterMsg
     })
   },
   data () {
@@ -82,7 +82,7 @@ export default {
           }
         }) */
 
-        await store.dispatch('submitUserMsg', {
+        await store.dispatch('user/submitUserMsg', {
           name: this.name,
           email: this.email,
           password: this.email

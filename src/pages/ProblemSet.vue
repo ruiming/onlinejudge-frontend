@@ -9,10 +9,11 @@
 <script>
 import { mapState } from 'vuex'
 import store from 'src/store'
+
 export default {
   computed: {
     ...mapState({
-      problems: state => state.problems
+      problems: state => state.problem.problems
     })
   },
   methods: {
@@ -20,9 +21,8 @@ export default {
       this.$router.push(`/problems/${problem.id}`)
     }
   },
-  async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getProblems', { limit: 20, offset: 0, order: 'asc', sortby: 'id' })
-    await next()
+  async created () {
+    store.dispatch('problem/getProblems', { limit: 20, offset: 0, order: 'asc', sortby: 'id' })
   }
 }
 </script>

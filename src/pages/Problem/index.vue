@@ -24,9 +24,9 @@ import SubmitHistory from './SubmitHistory'
 export default {
   computed: {
     ...mapState({
-      problem: state => state.problem,
-      recommend: state => state.recommend,
-      submissions: state => state.submissions
+      problem: state => state.problem.problem,
+      recommend: state => state.problem.recommend,
+      submissions: state => state.submission.submissions
     })
   },
   data () {
@@ -40,12 +40,12 @@ export default {
     }
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('getProblemById', {
+    await store.dispatch('problem/getProblemById', {
       id: to.params.id
     })
-    await store.dispatch('getProblemRecommendById', {
+    await store.dispatch('problem/getProblemRecommendById', {
       id: to.params.id})
-    await store.dispatch('submitUserCondition', {
+    await store.dispatch('submission/submitUserCondition', {
       offset: 0, limit: 20, all: true, problemId: to.params.id })
     await next()
   },

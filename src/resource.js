@@ -5,12 +5,6 @@ import { Message } from 'element-ui'
 Vue.use(VueResource)
 Vue.http.options.root = process.env.API_ROOT
 
-const Problem = Vue.resource('problems{/id}')
-const Submission = Vue.resource('submissions{/id}')
-const Recommend = Vue.resource('problems/{id}/recommend')
-const SubmissionIsAccepted = Vue.resource('submissions/{id}/stat')
-const User = Vue.resource('user/register')
-
 Vue.http.interceptors.push((request, next) => {
   request.headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZXhwIjoxNDk4NDYxOTI5LCJpYXQiOjE0OTgzNzU1Mjl9.7jUjYo_paMRAR7AMP1a2RNouPuO_XhFliTuUo822Wkc')
   next(response => {
@@ -24,10 +18,4 @@ Vue.http.interceptors.push((request, next) => {
   })
 })
 
-export {
-  Problem,
-  Submission,
-  Recommend,
-  SubmissionIsAccepted,
-  User
-}
+export default Vue.http
