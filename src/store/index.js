@@ -12,6 +12,10 @@ const debug = process.env.NODE_ENV !== 'production'
 const state = {
   problems: [],             // 全部题目
   problem: {},               // 单道题详情
+  recommend: [],                // 单道题的其他推荐
+  submissions: {},                  // 提交情况
+  submission: {},                  // 提交情况
+  submissionisAccepted: {},               // 提交后是否accepted
   UserRegisterMsg: '',
   user: {}
 }

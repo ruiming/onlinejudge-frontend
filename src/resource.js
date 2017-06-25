@@ -7,6 +7,8 @@ Vue.http.options.root = process.env.API_ROOT
 
 const Problem = Vue.resource('problems{/id}')
 const Submission = Vue.resource('submissions{/id}')
+const Recommend = Vue.resource('problems/{id}/recommend')
+const SubmissionIsAccepted = Vue.resource('submissions/{id}/stat')
 const User = Vue.resource('user/register')
 
 Vue.http.interceptors.push((request, next) => {
@@ -24,5 +26,7 @@ Vue.http.interceptors.push((request, next) => {
 export {
   Problem,
   Submission,
+  Recommend,
+  SubmissionIsAccepted,
   User
 }

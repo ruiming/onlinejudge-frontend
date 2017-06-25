@@ -10,15 +10,15 @@ import router from 'src/router'
 import store from 'src/store'
 import 'src/resource'
 import Dialog from 'hsy-vue-dialog'
-
 import 'element-ui/lib/theme-default/index.css'
 import 'normalize.css'
-
+import echarts from 'echarts'
 moment.locale('zh-cn')
 Vue.use(ElementUI)
 Vue.use(VueHead, { separator: '-' })
 Vue.use(VueCodeMirror)
-Vue.use(Dialog)
+Vue.prototype.$echarts = echarts
+Vue.use(Dialog) 
 
 /* eslint-disable no-new */
 new Vue({

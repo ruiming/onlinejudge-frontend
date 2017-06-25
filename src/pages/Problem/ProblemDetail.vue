@@ -1,5 +1,6 @@
 <template>
-<div>
+<el-row :gutter="10">
+  <el-col :sm="20" :md="16" >
   <div class="description">
     <p>{{problem.description}}</p>
   </div>
@@ -7,23 +8,51 @@
     <div v-for="(item, index) in supplement" :key="index">
       <h3>{{item.name}}</h3>
       <p>{{item.value}}</p>
+      <div class="line"></div>
     </div>
   </div>
   <div class="usercode">
-    <h3>Your Code</h3>
-    <codemirror v-model="code" :options="editorOption"></codemirror>
+    <form>
+      <select class="language">
+       <option value="C++">C++</option>
+       <option value="Java">Java</option>
+       <option value="Python">Python</option>
+      </select>
+      <i class="fa fa-files-o" aria-hidden="true"></i>
+      <i class="fa fa-step-forward" aria-hidden="true"></i>
+    </form>
+   <div class="codemirror-font">
+    <codemirror  v-model="code" :options="editorOption"></codemirror>
+   </div>
   </div>
   <div class="btn-group">
     <el-button type="primary" @click="submit">提交</el-button>
   </div>
-</div>
+</el-col>
+ <el-col :sm="0" :md="6" :offset= "2">
+   <ul class="submit-table"> 
+  <li class="sumbit-count">提交数量：{{problem.submitCount}}</li>
+  <li>通过数量：{{problem.passCount}}</li>
+  <li>通 过 率：{{problem.percent}}</li>
+  <li>作    者：{{problem.user.avatar}}</li>
+</ul>
+<div> <i class="fa fa-bookmark" aria-hidden="true"></i>相关推荐:</div>
+<el-tag v-for="tag in recommend" :key="tag.title"
+  :closable="true" :close-transition="false" type="primary"  @close="handleClose(tag)" 
+>{{tag.title}}
+</el-tag>
+
+ </el-col>
+</el-row>
 </template>
 
 <script>
 import { codemirror } from 'vue-codemirror'
+import { mapState } from 'vuex'
+import store from 'src/store'
 export default {
   name: 'problem-detail',
-  props: ['problem'],
+  props: ['problem', 'recommend', 'submissions'],
   data () {
     return {
       code: '',
@@ -36,6 +65,10 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      submission: state => state.submission,
+      submissionisAccepted: state => state.submissionisAccepted
+    }),
     supplement () {
       return [{
         name: 'Input',
@@ -54,11 +87,51 @@ export default {
   },
   methods: {
     async submit () {
-      await this.$store.dispatch('submitUserCode', {
+      await store.dispatch('submitUserCode', {
         id: this.problem.id,
         code: this.code,
-        lang: 'cc'
+        lang: 'c++'
       })
+      if (this.submission.success === false) {
+        this.$alert('提交失败', {
+          confirmButtonText: '确定'
+        })
+      } else {
+        this.$confirm('提交成功, 结果出来后系统将会通知您', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.$router.push({path: `/SubmitHistory`,
+            query: {
+              submissions: this.submissions
+            }})
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消'
+          })
+        })
+        while ((this.submissionisAccepted.data == null) && (this.submissionisAccepted.success === true)) {
+          await store.dispatch('submitIsAccepted', {
+            id: this.submission
+          })
+        }
+        if (this.submissionisAccepted.success === false) {
+          this.$notify.error({
+            message: '判题失败'
+          })
+        } else {
+          this.$notify.info({
+            message: '您好！您在' + this.submissionisAccepted.data.realTime + '提交题号' +
+             this.submissionisAccepted.data.id + '的运行结果为：' + this.submissionisAccepted.data.result
+          })
+        }
+      }
+    },
+    handleClose (tag) {
+      this.recommend.splice(this.recommend.indexOf(tag), 1)
+      this.inputVisible = false
+      this.inputValue = ''
     }
   },
   components: [
@@ -72,8 +145,15 @@ export default {
   line-height:180%; 
 }
 .supplement {
-  border-bottom: 1px solid #eee;
+
   padding-bottom: 10px;
+  color: #48576A;
+  font-size: 14px;
+  line-height:200%;
+}
+.description{
+  color: #48576A;
+  font-size: 14px;
   line-height:180%;
 }
 .usercode {
@@ -85,5 +165,55 @@ export default {
 .btn-group {
   display: flex;
   justify-content: flex-end;
+}
+.line{
+  background: #eee;
+  height: 1px;
+}
+.codemirror-font{
+  border: 1px outset #eee;
+}
+.language{
+  width: 20%;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.submit-table{
+  font-size: 16px;
+  color:#1F83CE;
+  height: 180px;
+  background-image: url(../../assets/background.png);
+   background-repeat:no-repeat;
+    background-position:center;
+   line-height: 30px;
+  
+}
+.fa.fa-files-o{
+width: 18px;
+height: 18px;
+color: #666666;
+
+}
+
+.fa.fa-step-forward{
+  width: 12px;
+  height: 18px;
+  color: #6DB773;
+}
+.sumbit-count{
+ height: 50px;
+ line-height: 70px;
+}
+.fa.fa-bookmark{
+  color: #FF6633;
+ width: 16px;
+ height: 19px;
+}
+.word-font{
+  font-size: 14px;
+  color: #111;
+  width: 100px;
+  height: 19px;
+  
 }
 </style>
