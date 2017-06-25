@@ -12,6 +12,7 @@ const SubmissionIsAccepted = Vue.resource('submissions/{id}/stat')
 const User = Vue.resource('user/register')
 
 Vue.http.interceptors.push((request, next) => {
+  request.headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZXhwIjoxNDk4NDYxOTI5LCJpYXQiOjE0OTgzNzU1Mjl9.7jUjYo_paMRAR7AMP1a2RNouPuO_XhFliTuUo822Wkc')
   next(response => {
     if (response.status !== 200) {
       if (response.data !== null && response.data.message) {

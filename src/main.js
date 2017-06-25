@@ -18,7 +18,7 @@ Vue.use(ElementUI)
 Vue.use(VueHead, { separator: '-' })
 Vue.use(VueCodeMirror)
 Vue.prototype.$echarts = echarts
-Vue.use(Dialog) 
+Vue.use(Dialog)
 
 /* eslint-disable no-new */
 new Vue({

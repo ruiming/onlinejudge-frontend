@@ -3,5 +3,5 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_ROOT: '"http://api.oj.ruiming.me/v1"'
+  API_ROOT: '"http://127.0.0.1:8080/v1"'
 })

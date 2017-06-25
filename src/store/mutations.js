@@ -24,7 +24,7 @@ export default {
   /** 存储提交情况 */
   [types.SUBMISSIONISACCEPTED] (state, {res}) {
     state.submissionisAccepted = res
- },
+  },
   /** 存储注册返回信息 */
   [types.RECEIVE_REGISTERMSG] (state, { message }) {
     state.UserRegisterMsg = message
