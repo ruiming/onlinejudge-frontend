@@ -9,6 +9,8 @@ const Problem = Vue.resource('problems{/id}')
 const Submission = Vue.resource('submissions{/id}')
 const Recommend = Vue.resource('problems/{id}/recommend')
 const SubmissionIsAccepted = Vue.resource('submissions/{id}/stat')
+const User = Vue.resource('user/register')
+
 Vue.http.interceptors.push((request, next) => {
   next(response => {
     if (response.status !== 200) {
@@ -25,5 +27,6 @@ export {
   Problem,
   Submission,
   Recommend,
-  SubmissionIsAccepted
+  SubmissionIsAccepted,
+  User
 }

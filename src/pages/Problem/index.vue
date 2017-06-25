@@ -52,6 +52,7 @@ export default {
   components: {
     SubmitHistory,
     ProblemDetail
+
   }
 }
 </script>

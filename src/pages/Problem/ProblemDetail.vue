@@ -26,7 +26,6 @@
    </div>
   </div>
   <div class="btn-group">
-
     <el-button type="primary" @click="submit">提交</el-button>
   </div>
 </el-col>
@@ -142,7 +141,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.description{
+  line-height:180%; 
+}
 .supplement {
 
   padding-bottom: 10px;
@@ -153,7 +154,7 @@ export default {
 .description{
   color: #48576A;
   font-size: 14px;
-  line-height:200%;
+  line-height:180%;
 }
 .usercode {
   padding: 10px 0;

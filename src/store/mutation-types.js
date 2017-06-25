@@ -10,4 +10,7 @@ export const SUBMISSION = 'SUBMISSION'
 export const SUBMISSIONS = 'SUBMISSIONS'
 /** 查看提交后得到答题的结果 */
 export const SUBMISSIONISACCEPTED = 'SUBMISSIONISACCEPTED'
-
+/** 获取注册是否成功msg */
+export const RECEIVE_REGISTERMSG = 'RECEIVE_REGISTERMSG'
+/** 根据用户邮箱获取用户密码 */
+export const RECEIVE_USER = 'RECEIVE_USER'

@@ -4,7 +4,6 @@
       <h4>
         <i class="fa fa-file-text-o" aria-hidden="true"></i>
         {{problem.user.avatar}}<span> 发布了新题</span> {{problem.title}}
-      <i class="fa fa-star" aria-hidden="true"></i>
       </h4>
       <p class="p2">{{problem.description}}</p>
     </div>
@@ -71,26 +70,6 @@ p{
 .left_position{
   float: right !important;
   margin-top: 10px;
-}
-.fa.fa-trophy{
-  color: #ffff66;
-  height: 190px;
-  margin-top: 10px;
-  float: left !important;
-}
-.fa.fa-comments-o{
-  color: #949494;
-   margin-top: 15px;
-  float: left !important;
-}
-.fa.fa-star{
-  width: 24px;
-  height: 24px;
-  float: right !important;
-  color: #f7b900;
-}
-.fa.fa-star:hover{
-  color: #cccccc;
 }
 .fa.fa-file-text-o{
   color: #cccccc;
