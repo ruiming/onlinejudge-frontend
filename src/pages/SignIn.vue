@@ -15,39 +15,48 @@
     </div><br>
 
     <div class="signbtngroup">
-      <el-button v-on:click="forget">忘记密码?</el-button>
-      <el-button type="primary" v-on:click="login">&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;</el-button>
+      <el-button @click="forget">忘记密码?</el-button>
+      <el-button type="primary" @click="login">&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;</el-button>
     </div>  
-
-<hsy-dialog class="tip" v-model="visible">
-  <div slot="title">提&nbsp;&nbsp;示</div>
-  <div slot="body">
-    <div>登录成功！</div>
-    <div class="btngroup">
-      <el-button @click="visible = false">取 消</el-button>
-      <el-button type="primary" @click="visible = false">确 定</el-button>
-    </div>
-  </div>
-</hsy-dialog>
 </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import store from 'src/store'
+
 export default {
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  },
   data () {
     return {
-      visible: false,
       account: '',
       password: ''
     }
   },
   methods: {
-    handleYes () {
-      alert('Yes')
-      this.visible = false
-    },
-    login: function () {
-      this.$router.push({path: '/home'})
+    async login () {
+      if (this.account !== '' && this.password !== '') {
+        await store.dispatch('user/getUserByAccount', {
+          nameOrEmail: this.account,
+          password: this.password
+        })
+        this.$message({
+          showClose: true,
+          message: '登录成功！',
+          type: 'success'
+        })
+        this.$router.push({path: '/home'})
+      } else {
+        this.$message({
+          showClose: true,
+          message: '输入有误！请重新登录！',
+          type: 'error'
+        })
+      }
     },
     forget: function () {
       this.$router.push({path: '/user/regainpassword'})

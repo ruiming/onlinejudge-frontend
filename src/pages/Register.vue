@@ -30,16 +30,6 @@
 <el-button type="primary" @click="register">注册SCNU OJ账号</el-button>
 </div>
 
-<hsy-dialog class="tip" v-model="visible">
-  <div slot="title">提&nbsp;&nbsp;示</div>
-  <div slot="body">
-    <div>注册成功！</div>
-    <div class="btngroup">
-      <el-button @click="visible = false">取 消</el-button>
-      <el-button type="primary" @click="visible = false">确 定</el-button>
-    </div>
-  </div>
-</hsy-dialog>
 </div>
 </template>
 
@@ -55,41 +45,31 @@ export default {
   },
   data () {
     return {
-      visible: false,
       name: '',
       email: '',
       password: ''
     }
   },
   methods: {
-    handleYes () {
-      alert('Yes')
-      this.visible = false
-    },
     async register () {
       if (this.name !== '' && this.email !== '' && this.password !== '') {
-        /* this.$http.interceptors.push((request, next) => {
-          console.log(this)// 此处this为请求所在页面的Vue实例
-          // modify request
-          if (request.massage === 'success') { // 在请求之前可以进行一些预处理和配置
-            alert(request.massage)
-            // continue to next interceptor
-            next((response) => {
-            // 在响应之后传给then之前对response进行修改和逻辑判断。对于token时候已过期的判断，就添加在此处，页面中任何一次http请求都会先调用此处方法
-              response.body = '...'
-              return response
-            })
-          }
-        }) */
-
         await store.dispatch('user/submitUserMsg', {
           name: this.name,
           email: this.email,
-          password: this.email
+          password: this.password
+        })
+        this.$message({
+          showClose: true,
+          message: '注册成功！请登录！',
+          type: 'success'
         })
         this.$router.push({path: '/'})// 注册成功跳转至登录页
       } else {
-        alert('输入有误请重新注册！')
+        this.$message({
+          showClose: true,
+          message: '输入有误！请重新注册！',
+          type: 'error'
+        })
       }
     }
   }

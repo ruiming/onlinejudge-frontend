@@ -21,9 +21,9 @@ export default {
       })
       commit('setUserRegisterMsg', res.body.message)
     },
-    async getUserByEmail ({ commit, state }, { email }) {
-      const res = await http.get(`user`, {
-        email
+    async getUserByAccount ({ commit, state }, { nameOrEmail, password }) {
+      const res = await http.post('user/login', {
+        nameOrEmail, password
       })
       commit('setUser', res.body.data)
     }
