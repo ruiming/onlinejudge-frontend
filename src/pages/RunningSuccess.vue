@@ -1,13 +1,13 @@
 <template>
 <div>
-  <h2 class="problem-title-font">sdhjsfhkfh</h2>
+  <h2 class="problem-title-font">{{specificsubmission.result.problem.id}}</h2>
    <div class="line"></div>
  
 <li>Accepted</li>
   <div class="test-condition"> 
-     <h4 class="h4-test"> 18/18测试者通过该题目</h4>
-     <h4  class="h4-test"> 运行时间：45s</h4>
-     <h4 class="h4-time">提交时间：1天</h4>
+     <h4 class="h4-test">{{specificsubmission.result.problem.passCount}}/{{specificsubmission.result.problem.submitCount}}测试者通过该题目</h4>
+     <h4  class="h4-test"> 运行时间：{{specificsubmission.result.problem.maxCpuTime}}s</h4>
+     <h4 class="h4-time">提交时间：{{specificsubmission.result.problem.maxRealTime}}天</h4>
    </div>
     <div class="line"></div>
     <h4>运行时间分析表图：</h4>
@@ -15,7 +15,7 @@
      <div class="line"></div>
      <div class="usercode">
    <h4>我的代码：</h4>
-   <h4>语言：c++</h4>
+   <h4>语言：{{specificsubmission.result.problem.lang}}</h4>
    <div class="codemirror-font">
     <codemirror  v-model="code" :options="editorOption"></codemirror>
    </div>
@@ -33,14 +33,26 @@ import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/title'
 import { codemirror } from 'vue-codemirror'
+import store from 'src/store'
+import { mapState } from 'vuex'
 export default {
-  props: ['problem'],
+  props: ['submissionid'],
   data () {
     return {
     }
   },
   mounted () {
     this.drawLine()
+  },
+  async beforeRouteEnter (to, from, next) {
+    await store.dispatch('problem/setSpecificSubmissionList', {
+      id: this.submissionid
+    })
+  },
+  computed: {
+    ...mapState({
+      specificsubmission: state => state.submission.specificsubmission
+    })
   },
   methods: {
     drawLine () {
@@ -80,7 +92,7 @@ export default {
             }
           },
           areaStyle: {normal: {}},
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
+          data: this.specificsubmission.state.row.cpuTime
         }]
       })
     }
