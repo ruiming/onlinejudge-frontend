@@ -18,6 +18,9 @@ export default {
     setSpecificSubmissionList (state, data) {
       state.specificsubmission = data
     },
+    setSubmissionStatus (state, rec) {
+      state.submissionisAccepted = rec
+    },
     c (state, { data }) {
       state.recommend = data
     }
@@ -27,7 +30,7 @@ export default {
       const res = await http.post('submissions', {
         id, code, lang
       })
-      commit('setSubmission', res.body.data)
+      commit('setSubmission', res.body)
     },
     async submitUserCondition ({ commit, state }, { offset, limit, all, problemId }) {
       const res = await http.get(`submissions`, {
@@ -41,7 +44,7 @@ export default {
     },
     async submitisaccepted ({ commit, state }, { id }) {
       const res = await http.get(`submissions/${id}/stat`)
-      commit('setSubmissionStatus', res.body.data)
+      commit('setSubmissionStatus', res.body)
     },
     async submitcirculation (submissionisAccepted, submission) {
       var intervalId = setInterval(function () {

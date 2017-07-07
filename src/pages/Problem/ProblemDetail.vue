@@ -33,7 +33,7 @@
    <ul class="submit-table"> 
   <li class="sumbit-count">提交数量：{{problem.submitCount}}</li>
   <li>通过数量：{{problem.passCount}}</li>
-  <li>通 过 率：{{percent}}</li>
+  <li>通 过 率：</li>
   <li>作    者：{{problem.user.name}}</li>
 </ul>
 <div> <i class="fa fa-bookmark" aria-hidden="true"></i>相关推荐:</div>
@@ -61,8 +61,7 @@ export default {
         mode: 'text/x-c++src',
         lineNumbers: true,
         line: true
-      },
-      precent: this.problem.passCount / this.problem.submitCount
+      }
     }
   },
   computed: {
@@ -102,7 +101,7 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          this.$router.push({path: `/SubmitHistory`,
+          this.$router.push({path: './SubmitHistory',
             query: {
               submissions: this.submissions
             }})

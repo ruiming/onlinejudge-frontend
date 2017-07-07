@@ -37,10 +37,6 @@ export default {
   methods: {
     handleClick (tab, event) {
       console.log(tab, event)
-    },
-    async created (to, from, next) {
-      await store.dispatch('submission/submitUserCondition', {
-        offset: 0, limit: 20, all: true, problemId: to.params.id })
     }
   },
   async beforeRouteEnter (to, from, next) {
@@ -49,6 +45,8 @@ export default {
     })
     await store.dispatch('problem/getProblemRecommendById', {
       id: to.params.id})
+    await store.dispatch('submission/submitUserCondition', {
+      offset: 0, limit: 20, all: true, problemId: to.params.id })
     await next()
   },
   components: {

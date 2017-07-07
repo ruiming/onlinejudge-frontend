@@ -6,7 +6,7 @@ Vue.use(VueResource)
 Vue.http.options.root = process.env.API_ROOT
 
 Vue.http.interceptors.push((request, next) => {
-  request.headers.set('Authorization', 'yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUzLCJleHAiOjE0OTkzMTk4OTIsImlhdCI6MTQ5OTIzMzQ5Mn0.n3pHzqVmnYTHnkEGRgWvxoJHgwDzu7n69aEZP-lQLTY')
+  request.headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTU4LCJleHAiOjE0OTkzMjQ3NTIsImlhdCI6MTQ5OTIzODM1Mn0.EO5XCyN_V8rp0YWeeTimj-m5UwAiUGEfoepnDQjXA70')
   next(response => {
     if (response.status !== 200) {
       if (response.data !== null && response.data.message) {
