@@ -5,7 +5,8 @@ export default {
   state: {
     submissions: {},
     submission: {},
-    submissionisAccepted: {}
+    submissionisAccepted: {},
+    specificsubmission: {}
   },
   mutations: {
     setSubmission (state, data) {
@@ -13,6 +14,12 @@ export default {
     },
     setSubmissionList (state, data) {
       state.submissions = data
+    },
+    setSpecificSubmissionList (state, data) {
+      state.specificsubmission = data
+    },
+    setSubmissionStatus (state, rec) {
+      state.submissionisAccepted = rec
     },
     c (state, { data }) {
       state.recommend = data
@@ -23,7 +30,7 @@ export default {
       const res = await http.post('submissions', {
         id, code, lang
       })
-      commit('setSubmission', res.body.data)
+      commit('setSubmission', res.body)
     },
     async submitUserCondition ({ commit, state }, { offset, limit, all, problemId }) {
       const res = await http.get(`submissions`, {
@@ -31,9 +38,23 @@ export default {
       })
       commit('setSubmissionList', res.body.data)
     },
+    async submitUserSpecificCondition ({ commit, state }, { id }) {
+      const res = await http.get(`submissions/${id}`)
+      commit('setSpecificSubmissionList', res.body.data)
+    },
     async submitisaccepted ({ commit, state }, { id }) {
       const res = await http.get(`submissions/${id}/stat`)
-      commit('setSubmissionStatus', res.body.data)
+      commit('setSubmissionStatus', res.body)
+    },
+    async submitcirculation (submissionisAccepted, submission) {
+      var intervalId = setInterval(function () {
+        if ((submissionisAccepted.data == null) && (submissionisAccepted.success === true)) {
+          this.submitisaccepted(submission)
+          if (submissionisAccepted.data != null) {
+            clearInterval(intervalId)
+          }
+        }
+      }, 1000)
     }
   }
 }

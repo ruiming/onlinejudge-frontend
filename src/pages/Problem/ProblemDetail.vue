@@ -4,13 +4,13 @@
   <div class="description">
     <p>{{problem.description}}</p>
   </div>
-  <div class="supplement">
+ <!-- <div class="supplement">
     <div v-for="(item, index) in supplement" :key="index">
       <h3>{{item.name}}</h3>
       <p>{{item.value}}</p>
       <div class="line"></div>
     </div>
-  </div>
+  </div>-->
   <div class="usercode">
     <form>
       <select class="language">
@@ -33,8 +33,8 @@
    <ul class="submit-table"> 
   <li class="sumbit-count">提交数量：{{problem.submitCount}}</li>
   <li>通过数量：{{problem.passCount}}</li>
-  <li>通 过 率：{{problem.percent}}</li>
-  <li>作    者：{{problem.user.avatar}}</li>
+  <li>通 过 率：</li>
+  <li>作    者：{{problem.user.name}}</li>
 </ul>
 <div> <i class="fa fa-bookmark" aria-hidden="true"></i>相关推荐:</div>
 <el-tag v-for="tag in recommend" :key="tag.title"
@@ -101,7 +101,7 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          this.$router.push({path: `/SubmitHistory`,
+          this.$router.push({path: './SubmitHistory',
             query: {
               submissions: this.submissions
             }})
@@ -111,21 +111,10 @@ export default {
             message: '已取消'
           })
         })
-        while ((this.submissionisAccepted.data == null) && (this.submissionisAccepted.success === true)) {
-          await store.dispatch('submission/submitIsAccepted', {
-            id: this.submission
-          })
-        }
-        if (this.submissionisAccepted.success === false) {
-          this.$notify.error({
-            message: '判题失败'
-          })
-        } else {
-          this.$notify.info({
-            message: '您好！您在' + this.submissionisAccepted.data.realTime + '提交题号' +
-             this.submissionisAccepted.data.id + '的运行结果为：' + this.submissionisAccepted.data.result
-          })
-        }
+        await store.dispatch('submission/submitisaccepted', {
+          id: this.submission.data
+        })
+        await store.dispatch('submission/submitcirculation', this.submissionisAccepted, this.submission.data)
       }
     },
     handleClose (tag) {

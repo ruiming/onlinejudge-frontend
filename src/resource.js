@@ -6,13 +6,19 @@ Vue.use(VueResource)
 Vue.http.options.root = process.env.API_ROOT
 
 Vue.http.interceptors.push((request, next) => {
-  // request.headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZXhwIjoxNDk4NDYxOTI5LCJpYXQiOjE0OTgzNzU1Mjl9.7jUjYo_paMRAR7AMP1a2RNouPuO_XhFliTuUo822Wkc')
+  request.headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTU4LCJleHAiOjE0OTkzMjQ3NTIsImlhdCI6MTQ5OTIzODM1Mn0.EO5XCyN_V8rp0YWeeTimj-m5UwAiUGEfoepnDQjXA70')
   next(response => {
     if (response.status !== 200) {
       if (response.data !== null && response.data.message) {
         Message.error(response.data.message)
       } else {
-        Message.error(response.data)
+        if (response.data.code) {
+          this.$notify.info({
+            message: response.data
+          })
+        } else {
+          Message.error(response.data)
+        }
       }
     }
   })
