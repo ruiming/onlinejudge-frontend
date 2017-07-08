@@ -44,9 +44,11 @@ export default {
       id: to.params.id
     })
     await store.dispatch('problem/getProblemRecommendById', {
-      id: to.params.id})
+      id: to.params.id
+    })
     await store.dispatch('submission/submitUserCondition', {
-      offset: 0, limit: 20, all: true, problemId: to.params.id })
+      offset: 0, limit: 20, selfOnly: false, problemId: to.params.id
+    })
     await next()
   },
   components: {

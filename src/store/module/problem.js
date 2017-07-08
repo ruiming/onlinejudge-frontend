@@ -21,7 +21,7 @@ export default {
   actions: {
     async getProblems ({ commit, state }, { limit, offset, sortby, order }) {
       const res = await http.get('problems', {
-        limit, offset, sortby, order
+        params: {limit, offset, sortby, order}
       })
       commit('setProblemList', res.body.data)
     },

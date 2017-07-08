@@ -3,7 +3,7 @@
     <div v-for="problem in problems" class="media">
       <h4>
         <i class="fa fa-file-text-o" aria-hidden="true"></i>
-        {{problem.user.avatar}}<span> 发布了新题</span> {{problem.title}}
+        {{problem.user.name}}<span> 发布了新题</span> {{problem.title}}
       </h4>
       <p class="p2">{{problem.description}}</p>
     </div>

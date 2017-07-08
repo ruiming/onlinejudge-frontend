@@ -4,13 +4,6 @@
   <div class="description">
     <p>{{problem.description}}</p>
   </div>
-  <div class="supplement">
-    <div v-for="(item, index) in supplement" :key="index">
-      <h3>{{item.name}}</h3>
-      <p>{{item.value}}</p>
-      <div class="line"></div>
-    </div>
-  </div>
   <div class="usercode">
     <form>
       <select class="language">
@@ -32,9 +25,9 @@
  <el-col :sm="0" :md="6" :offset= "2">
    <ul class="submit-table"> 
   <li class="sumbit-count">提交数量：{{problem.submitCount}}</li>
-  <li>通过数量：{{problem.passCount}}</li>
-  <li>通 过 率：{{problem.percent}}</li>
-  <li>作    者：{{problem.user.avatar}}</li>
+  <li>通过数量：{{problem.passCount }}</li>
+  <li>通 过 率：{{pre}}</li>
+  <li>作    者：{{problem.user.name}}</li>
 </ul>
 <div> <i class="fa fa-bookmark" aria-hidden="true"></i>相关推荐:</div>
 <el-tag v-for="tag in recommend" :key="tag.title"
@@ -56,12 +49,18 @@ export default {
   data () {
     return {
       code: '',
+      pre: 0,
       editorOption: {
         tabSize: 4,
         mode: 'text/x-c++src',
         lineNumbers: true,
         line: true
       }
+    }
+  },
+  mounted () {
+    if (this.problem.submitCount !== 0) {
+      this.pre = this.problem.passCount / this.problem.submitCount
     }
   },
   computed: {
@@ -97,11 +96,14 @@ export default {
           confirmButtonText: '确定'
         })
       } else {
-        this.$confirm('提交成功, 结果出来后系统将会通知您', {
+        this.$alert('提交成功, 结果出来后系统将会通知您', {
+          confirmButtonText: '确定'
+        })
+       /* this.$confirm('提交成功, 结果出来后系统将会通知您', {
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          this.$router.push({path: `/SubmitHistory`,
+          this.$router.push({path: './SubmitHistory',
             query: {
               submissions: this.submissions
             }})
@@ -110,22 +112,11 @@ export default {
             type: 'info',
             message: '已取消'
           })
+        }) */
+        await store.dispatch('submission/submitisaccepted', {
+          id: this.submission.data
         })
-        while ((this.submissionisAccepted.data == null) && (this.submissionisAccepted.success === true)) {
-          await store.dispatch('submission/submitIsAccepted', {
-            id: this.submission
-          })
-        }
-        if (this.submissionisAccepted.success === false) {
-          this.$notify.error({
-            message: '判题失败'
-          })
-        } else {
-          this.$notify.info({
-            message: '您好！您在' + this.submissionisAccepted.data.realTime + '提交题号' +
-             this.submissionisAccepted.data.id + '的运行结果为：' + this.submissionisAccepted.data.result
-          })
-        }
+        await store.dispatch('submission/submitcirculation', this.submissionisAccepted, this.submission.data)
       }
     },
     handleClose (tag) {
@@ -145,7 +136,6 @@ export default {
   line-height:180%; 
 }
 .supplement {
-
   padding-bottom: 10px;
   color: #48576A;
   font-size: 14px;
@@ -192,9 +182,7 @@ export default {
 width: 18px;
 height: 18px;
 color: #666666;
-
 }
-
 .fa.fa-step-forward{
   width: 12px;
   height: 18px;
