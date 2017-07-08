@@ -6,7 +6,9 @@ export default {
     user: {},
     UserRegisterMsg: '',
     regainPasswordMsg: '',
-    resetPasswordMsg: ''
+    resetPasswordMsg: '',
+    loginStatus: false,
+    userName: ''
   },
   mutations: {
     setUser (state, { data }) {
@@ -20,6 +22,12 @@ export default {
     },
     setNewPasswordMsg (state, data) {
       state.resetPasswordMsg = data
+    },
+    setloginStatus (state, data) {
+      state.loginStatus = data
+    },
+    setuserName (state, data) {
+      state.userName = data
     }
   },
   actions: {
@@ -34,11 +42,11 @@ export default {
         nameOrEmail, password
       })
       if (res.body.data.token && res.body.data) {
-        localStorage.setItem('currentUser_userName', res.body.data.user.name)
         localStorage.setItem('currentUser_token', res.body.data.token)
-        // this.loginStatus = true
       }
       commit('setUser', res.body.data)
+      commit('setloginStatus', true)
+      commit('setuserName', res.body.data.user.name)
     },
     async regainPassword ({ commit, state }, { email }) {
       const res = await http.post('user/forget', {
@@ -47,10 +55,13 @@ export default {
       commit('setRegainPasswordMsg', res.body.message)
     },
     async resetPassword ({ commit, state }, { password, newPassword }) {
-      const res = await http.post('user/password', {
+      const res = await http.patch('user/password', {
         password, newPassword
       })
       commit('setNewPasswordMsg', res.body.message)
+    },
+    async logout ({commit, state}) {
+      commit('setloginStatus', false)
     }
   }
 }

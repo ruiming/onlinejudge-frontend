@@ -11,7 +11,7 @@
         <span class="p1">新&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;</span>
         <div class="inputmsg">
         <el-tooltip effect="dark" content="密码由6到18位数字或字母组成" placement="bottom">
-        <el-input placeholder="请输入新密码" v-model="newpassword"></el-input>
+        <el-input placeholder="请输入新密码" v-model="newPassword"></el-input>
         </el-tooltip>
         </div>
     </div><br><br>
@@ -38,7 +38,7 @@ export default {
   data () {
     return {
       password: '',
-      newpassword: ''
+      newPassword: ''
       // confirmpassword: ''
     }
   },
@@ -47,11 +47,11 @@ export default {
       if (this.password !== '' && this.newpassword !== '') {
         await store.dispatch('user/resetPassword', {
           password: this.password,
-          newpassword: this.newpassword
+          newPassword: this.newPassword
         })
         this.$message({
           showClose: true,
-          message: '重置密码成功！请重新登录！',
+          message: '更改密码成功！请重新登录！',
           type: 'success'
         })
         this.$router.push({path: '/'})

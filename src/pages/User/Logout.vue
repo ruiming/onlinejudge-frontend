@@ -8,6 +8,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import store from 'src/store'
+
+export default {
+  computed: {
+    ...mapState({
+      loginStatus: state => state.user.loginStatus
+    })
+  },
+  async beforeRouteEnter (to, from, next) {
+    await store.dispatch('user/logout')
+    localStorage.removeItem('currentUser_userName')
+    localStorage.removeItem('currentUser_token')
+    await next()
+  }
+}
 </script>
 
 <style scoped>

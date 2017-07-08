@@ -7,7 +7,7 @@
 </div>
     <div class="inputgroup">
       <span class="p2">账&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
-      <el-input  class="inputmsg" name="username" placeholder="请输入用户名或邮箱" v-model="account"></el-input>
+      <el-input class="inputmsg" name="username" placeholder="请输入用户名或邮箱" v-model="account"></el-input>
     </div><br>
     <div class="inputgroup">
       <span class="p2">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
@@ -28,7 +28,7 @@ import store from 'src/store'
 export default {
   computed: {
     ...mapState({
-      user: state => state.user
+      user: state => state.user.user
     })
   },
   data () {

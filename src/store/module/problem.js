@@ -5,11 +5,13 @@ export default {
   state: {
     problems: [],
     problem: {},
-    recommend: []
+    recommend: [],
+    problemCount: ''
   },
   mutations: {
     setProblemList (state, data) {
       state.problems = data[0]
+      state.problemCount = data[1]
     },
     setProblem (state, data) {
       state.problem = data
