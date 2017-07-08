@@ -5,7 +5,7 @@
     </el-table-column>
      <el-table-column label="运行结果"  width="150">
       <template scope="scope">
-      <el-button @click="handleClick( scope.row,scope.$index)" type="text" >{{runResult[ scope.row.result] }}</el-button>
+      <el-button @click="handleClick(scope.$index)" type="text" >{{runResult[ scope.row.result] }}</el-button>
       </template>
        </el-table-column>
      <el-table-column  prop="problem.maxMemory" label="内存占用" width="150">
@@ -46,7 +46,7 @@ export default {
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
     },
-    handleClick (result, submissionid) {
+    handleClick (submissionid) {
       if (this.submissions[0][submissionid].result === 0) {
         this.$router.push(`/runningsuccess/${this.submissions[0][submissionid].id}`)
       } else {

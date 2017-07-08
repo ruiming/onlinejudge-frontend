@@ -4,7 +4,7 @@
   <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
     <el-tab-pane name="first">
     <span slot="label"><i class="fa fa-bars"></i>题目描述</span>
-     <problem-detail :problem="problem" :recommend="recommend" ></problem-detail>
+     <problem-detail :problem="problem" :recommend="recommend" :submissions="submissions"></problem-detail>
   </el-tab-pane>
      <el-tab-pane name="second">
     <span slot="label"><i class="fa fa-newspaper-o "></i>提交记录</span>

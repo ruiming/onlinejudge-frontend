@@ -67,6 +67,16 @@ export default {
     })
     await next()
   },
+  async beforeRouteEnter (to, from, next) {
+    await store.dispatch('problem/setSpecificSubmissionList', {
+      id: this.submissionid
+    })
+  },
+  computed: {
+    ...mapState({
+      specificsubmission: state => state.submission.specificsubmission
+    })
+  },
   methods: {
     drawLine () {
       let mychart = echarts.init(document.getElementById('mychart'))

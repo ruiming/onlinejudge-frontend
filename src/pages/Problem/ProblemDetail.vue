@@ -116,6 +116,7 @@ export default {
         await store.dispatch('submission/submitisaccepted', {
           id: this.submission.data
         })
+
         await store.dispatch('submission/submitcirculation', this.submissionisAccepted, this.submission.data)
       }
     },
