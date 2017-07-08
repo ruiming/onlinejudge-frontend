@@ -6,17 +6,18 @@
         <el-menu-item index="/home">主页</el-menu-item>
         <el-menu-item index="/problemset">题库</el-menu-item>
         <div>
-        <el-submenu index="/" class="user-menu">
-          <template slot="title">用户XXX</template>
-          <el-menu-item index="/user/submission">我的提交</el-menu-item>
-          <el-menu-item index="/user/security">修改密码</el-menu-item>
-          <el-menu-item index="/user/logout">退出登录</el-menu-item>
+
+        <el-submenu index="/" class="user-menu" v-if="loginStatus">
+        <template slot="title">用户{{ name }}</template>
+        <el-menu-item index="/user/submission">我的提交</el-menu-item>
+        <el-menu-item index="/user/security">修改密码</el-menu-item>
+        <el-menu-item index="/user/logout">退出登录</el-menu-item>
         </el-submenu>
         </div>
         
-        <span class="btngroup">
-        <el-button type="primary" v-on:click="signin">登录</el-button>
-        <el-button type="primary" v-on:click="register">注册</el-button>
+        <span class="btngroup"  v-if="!loginStatus">
+        <el-button type="primary" @click="signin">登录</el-button>
+        <el-button type="primary" @click="register">注册</el-button>
         </span>
       </div>
       </el-menu>
@@ -30,6 +31,7 @@
 <script>
 import { mapState } from 'vuex'
 import store from './store'
+
 export default {
   computed: {
     ...mapState({
@@ -46,6 +48,11 @@ export default {
     },
     signin: function () {
       this.$router.push({path: '/'})
+    }
+  },
+  data () {
+    return {
+      name: localStorage.getItem('currentUser_userName')
     }
   }
 }

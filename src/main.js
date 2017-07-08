@@ -19,6 +19,7 @@ Vue.use(VueHead, { separator: '-' })
 Vue.use(VueCodeMirror)
 Vue.prototype.$echarts = echarts
 Vue.use(Dialog)
+Vue.prototype.loginStatus = false
 
 /* eslint-disable no-new */
 new Vue({

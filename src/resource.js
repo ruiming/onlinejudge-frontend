@@ -6,7 +6,11 @@ Vue.use(VueResource)
 Vue.http.options.root = process.env.API_ROOT
 
 Vue.http.interceptors.push((request, next) => {
-  request.headers.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZXhwIjoxNDk5MzYwNjY0LCJpYXQiOjE0OTkyNzQyNjR9.UYw1gp-O2wBQvKn5Ktpe3wJDwtmlfnk920vWGj-xSxk')
+  var token
+  if (!token && localStorage.getItem('currentUser_token')) {
+    token = localStorage.getItem('currentUser_token')
+    request.headers.set('Authorization', 'Bearer ' + token)
+  }
   next(response => {
     if (response.status !== 200) {
       if (response.data !== null && response.data.message) {
