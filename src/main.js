@@ -13,7 +13,9 @@ import Dialog from 'hsy-vue-dialog'
 import 'element-ui/lib/theme-default/index.css'
 import 'normalize.css'
 import echarts from 'echarts'
+
 moment.locale('zh-cn')
+
 Vue.use(ElementUI)
 Vue.use(VueHead, { separator: '-' })
 Vue.use(VueCodeMirror)

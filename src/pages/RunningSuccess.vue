@@ -65,17 +65,10 @@ export default {
     await store.dispatch('submission/submitUserSpecificCondition', {
       id: to.params.id
     })
-    await next()
-  },
-  async beforeRouteEnter (to, from, next) {
     await store.dispatch('problem/setSpecificSubmissionList', {
       id: this.submissionid
     })
-  },
-  computed: {
-    ...mapState({
-      specificsubmission: state => state.submission.specificsubmission
-    })
+    await next()
   },
   methods: {
     drawLine () {
