@@ -16,7 +16,13 @@ Vue.http.interceptors.push((request, next) => {
       if (response.data !== null && response.data.message) {
         Message.error(response.data.message)
       } else {
-        Message.error(response.data)
+        if (response.data.code) {
+          this.$notify.info({
+            message: response.data
+          })
+        } else {
+          Message.error(response.data)
+        }
       }
     }
   })
