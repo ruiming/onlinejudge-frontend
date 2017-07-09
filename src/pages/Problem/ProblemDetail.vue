@@ -1,19 +1,8 @@
 <template>
 <el-row :gutter="10">
   <el-col :sm="20" :md="16" >
-  <div class="description">
-    <p>{{problem.description}}</p>
-  </div>
+  <div v-html="description" class="description"></div>
   <div class="usercode">
-    <form>
-      <select class="language">
-       <option value="C++">C++</option>
-       <option value="Java">Java</option>
-       <option value="Python">Python</option>
-      </select>
-      <i class="fa fa-files-o" aria-hidden="true"></i>
-      <i class="fa fa-step-forward" aria-hidden="true"></i>
-    </form>
    <div class="codemirror-font">
     <codemirror  v-model="code" :options="editorOption"></codemirror>
    </div>
@@ -22,8 +11,8 @@
     <el-button type="primary" @click="submit">提交</el-button>
   </div>
 </el-col>
- <el-col :sm="0" :md="6" :offset= "2">
-   <ul class="submit-table"> 
+<el-col :sm="0" :md="6" :offset= "2">
+<ul class="submit-table"> 
   <li class="sumbit-count">提交数量：{{problem.submitCount}}</li>
   <li>通过数量：{{problem.passCount }}</li>
   <li>通 过 率：{{pre}}</li>
@@ -43,6 +32,8 @@
 import { codemirror } from 'vue-codemirror'
 import { mapState } from 'vuex'
 import store from 'src/store'
+import { markdown } from 'markdown'
+
 export default {
   name: 'problem-detail',
   props: ['problem', 'recommend', 'submissions'],
@@ -51,6 +42,7 @@ export default {
       code: '',
       pre: 0,
       editorOption: {
+        theme: 'dracula',
         tabSize: 4,
         mode: 'text/x-c++src',
         lineNumbers: true,
@@ -68,6 +60,9 @@ export default {
       submission: state => state.submission.submission,
       submissionisAccepted: state => state.submission.submissionisAccepted
     }),
+    description () {
+      return markdown.toHTML(this.problem.description, 'Maruku')
+    },
     supplement () {
       return [{
         name: 'Input',
@@ -133,8 +128,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.description{
-  line-height:180%; 
+.description {
+  border: 1px solid #eee;
+  padding: 5px 15px;
+  
+  table {
+    border-collapse: collapse;
+    border: 1px solid #eee;
+  }
+
+  td,tr {
+    border: 1px solid #eee;
+  }
 }
 .supplement {
   padding-bottom: 10px;
@@ -170,6 +175,7 @@ export default {
   padding-top: 5px;
 }
 .submit-table{
+  margin-top: -10px;
   font-size: 16px;
   color:#1F83CE;
   height: 180px;
@@ -180,9 +186,9 @@ export default {
   
 }
 .fa.fa-files-o{
-width: 18px;
-height: 18px;
-color: #666666;
+  width: 18px;
+  height: 18px;
+  color: #666666;
 }
 .fa.fa-step-forward{
   width: 12px;

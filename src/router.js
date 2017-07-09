@@ -10,7 +10,7 @@ import Logout from 'src/pages/User/Logout'
 import Register from 'src/pages/Register'
 import SignIn from 'src/pages/SignIn'
 import RegainPassword from 'src/pages/User/RegainPassword'
-import Submission from 'src/pages/User/submission'
+import Submission from 'src/pages/User/Submission'
 
 Vue.use(Router)
 

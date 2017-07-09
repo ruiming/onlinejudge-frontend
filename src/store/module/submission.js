@@ -8,7 +8,7 @@ export default {
     submissionisAccepted: {},
     specificsubmission: {},
     runResult: [
-      'PASS',
+      'ACCEPT',
       'CPU_TIME_LIMIT_EXCEEDED',
       'REAL_TIME_LIMIT_EXCEEDED',
       'MEMORY_LIMIT_EXCEEDED',
@@ -30,9 +30,6 @@ export default {
     },
     setSubmissionStatus (state, rec) {
       state.submissionisAccepted = rec
-    },
-    c (state, { data }) {
-      state.recommend = data
     }
   },
   actions: {

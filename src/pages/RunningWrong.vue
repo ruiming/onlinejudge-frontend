@@ -4,11 +4,12 @@
     {{specificsubmission.result.problem.title}}</h2>
    <div class="line"></div>
  
-<li>Compile Error或者Wrong Answer</li>
+<li>{{runResult[specificsubmission.result.result]}}</li>
+<p class="log">{{specificsubmission.result.log}}</p>
   <div class="test-condition"> 
      <h4 class="h4-test"> {{specificsubmission.result.problem.passCount}}/{{specificsubmission.result.problem.submitCount}}测试者通过该题目</h4>
-     <h4  class="h4-test"> 运行时间：{{runtime}}s</h4>
-     <h4 class="h4-time">提交时间：{{realtime}}天</h4>
+     <h4  class="h4-test"> 运行时间：{{specificsubmission.result.cpuTime}} ms</h4>
+     <h4 class="h4-time">提交时间：{{specificsubmission.result.realTime}} ms</h4>
    </div>
     <div class="line"></div>
   <div class="text-explain">
@@ -47,13 +48,21 @@ export default {
         mode: 'text/x-c++src',
         lineNumbers: true,
         line: true
-      }
+      },
+      runResult: [
+        'ACCEPT',
+        'CPU_TIME_LIMIT_EXCEEDED',
+        'REAL_TIME_LIMIT_EXCEEDED',
+        'MEMORY_LIMIT_EXCEEDED',
+        'RUNTIME_ERROR',
+        'SYSTEM_ERROR',
+        'COMPILE_ERROR', // 自定义的编译错误 (具体看 log)
+        'RESULT_NO_MATCH' // 自定义的结果不匹配 (具体看 log)
+      ]
     }
   },
   mounted () {
     this.code = this.specificsubmission.result.code
-    this.runtime = this.specificsubmission.result.problem.maxCpuTime / 1000
-    this.realtime = this.specificsubmission.result.problem.maxRealTime / 86400000.0
   },
   async beforeRouteEnter (to, from, next) {
     await store.dispatch('submission/submitUserSpecificCondition', {
@@ -78,12 +87,19 @@ export default {
 
 <style scoped>
 li{
-    font-size: 40px;
-    color: #999;
+  font-size: 25px;
+  color: #999;
+  margin: 25px 0 10px 0;
+}
+.log {
+  white-space: pre;
+  overflow: auto;
+  background: #151718;
+  color: #fff;
+  padding: 10px;
 }
 .problem-title-font{
   font-size: 20px;
-  font-style:italic;
   color: #6699FF;
 }
 .line{

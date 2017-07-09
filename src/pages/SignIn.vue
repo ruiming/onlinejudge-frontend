@@ -81,7 +81,6 @@ export default {
 }
 
 .welcome{
-  background-color: #eef1f6;
   padding: 20px;
   margin-top: 40px;
   margin-left: 20px;

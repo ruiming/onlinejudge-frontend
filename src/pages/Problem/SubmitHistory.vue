@@ -3,18 +3,18 @@
 <el-table :data="submissions[0]" border style="width: 100%" >  
     <el-table-column   prop="user.name"  label="用户名" width="150">
     </el-table-column>
-     <el-table-column label="运行结果"  width="150">
+     <el-table-column label="运行结果"  width="180">
       <template scope="scope">
       <el-button @click="handleClick(scope.$index)" type="text" >{{runResult[ scope.row.result] }}</el-button>
       </template>
        </el-table-column>
-     <el-table-column  prop="problem.maxMemory" label="内存占用" width="150">
+     <el-table-column  prop="memory" label="内存占用(byte)" width="150">
     </el-table-column>
-     <el-table-column  prop="problem.maxCpuTime" label="运行时间(MS)" width="150">
+     <el-table-column  prop="cpuTime" label="CPU 时间(ms)" width="150">
     </el-table-column>
-     <el-table-column  prop="problem.lang" label="语言" width="150">
+     <el-table-column  prop="lang" label="语言" width="150">
     </el-table-column>
-    <el-table-column prop="problem.maxRealTime"  label="提交时间(MS)">
+    <el-table-column prop="realTime"  label="运行时间(ms)">
     </el-table-column>
   </el-table>
   <div class="block">

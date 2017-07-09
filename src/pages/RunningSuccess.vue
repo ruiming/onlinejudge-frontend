@@ -7,8 +7,7 @@
 <li>Accepted</li>
   <div class="test-condition"> 
      <h4 class="h4-test">{{specificsubmission.result.problem.passCount}}/{{specificsubmission.result.problem.submitCount}}测试者通过该题目</h4>
-     <h4  class="h4-test"> 运行时间：{{runtime}}s</h4>
-     <h4 class="h4-time">提交时间：{{realtime}}0天</h4>
+     <h4  class="h4-test"> 运行时间：{{specificsubmission.result.realTime}} ms</h4>
    </div>
     <div class="line"></div>
     <h4>运行时间分析表图：</h4>
@@ -54,7 +53,7 @@ export default {
     this.code = this.specificsubmission.result.code
     this.drawLine()
     this.runtime = this.specificsubmission.result.problem.maxCpuTime / 1000
-    this.realtime = this.specificsubmission.result.problem.maxRealTime / 86400000.0
+    this.realtime = this.specificsubmission.result.realtime
   },
   computed: {
     ...mapState({
@@ -64,9 +63,6 @@ export default {
   async beforeRouteEnter (to, from, next) {
     await store.dispatch('submission/submitUserSpecificCondition', {
       id: to.params.id
-    })
-    await store.dispatch('problem/setSpecificSubmissionList', {
-      id: this.submissionid
     })
     await next()
   },
@@ -90,7 +86,7 @@ export default {
           {
             type: 'category',
             boundaryGap: false,
-            data: ['10s', '20s', '30s', '40s', '50s', '60s', '70s ']
+            data: ['10ms', '20ms', '30ms', '40ms', '50ms', '60ms', '70ms ']
           }
         ],
         yAxis: [
@@ -108,7 +104,7 @@ export default {
             }
           },
           areaStyle: {normal: {}},
-          data: [this.specificsubmission.state[1].cpuTime]/* 这里是图标的数据 */
+          data: this.specificsubmission.state.map(item => item.realTime)
         }]
       })
     },
@@ -131,7 +127,6 @@ li{
 }
 .problem-title-font{
   font-size: 20px;
-  font-style:italic;
   color: #6699FF;
 }
 .line{

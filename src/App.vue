@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-menu :default-active="$route.path" :router="true" mode="horizontal">
+    <el-menu class="dark" theme="dark" :default-active="$route.path" :router="true" mode="horizontal">
       <div class="container">
         <el-menu-item index="/home"><span class="signal">SCNU OJ</span></el-menu-item>
         <el-menu-item index="/home">主页</el-menu-item>
@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss">
 body {
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+  font-family: Droid Sans,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
@@ -69,8 +69,6 @@ body {
   border-radius: 0;
 }
 
-
-
 .user-menu {
   float: right !important;
 }
@@ -79,6 +77,7 @@ body {
   padding: 10px;
   box-sizing: border-box;
 }
+
 .line{
   background: #eee;
   height: 1.5px;
