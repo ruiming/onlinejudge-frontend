@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
 body {
   font-family: Droid Sans,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -65,8 +65,11 @@ body {
   font-size: 14px;  
 }
 
-.el-menu {
-  border-radius: 0;
+.dark {
+  border-radius: 0 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
 }
 
 .user-menu {
