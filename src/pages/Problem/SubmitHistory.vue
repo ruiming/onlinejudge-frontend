@@ -1,20 +1,20 @@
 <template>
 <div>
-<el-table :data="submissions.data" border style="width: 100%" >  
+<el-table :data="submissions[0]" border style="width: 100%" >  
     <el-table-column   prop="user.name"  label="用户名" width="150">
     </el-table-column>
      <el-table-column label="运行结果"  width="150">
       <template scope="scope">
-         <el-button @click="handleClick(scope.row.result)" type="text" >{{ scope.row.problem.result }}</el-button>
+      <el-button @click="handleClick(scope.$index)" type="text" >{{runResult[ scope.row.result] }}</el-button>
       </template>
        </el-table-column>
      <el-table-column  prop="problem.maxMemory" label="内存占用" width="150">
     </el-table-column>
-     <el-table-column  prop="problem.maxCpuTime" label="运行时间" width="150">
+     <el-table-column  prop="problem.maxCpuTime" label="运行时间(MS)" width="150">
     </el-table-column>
      <el-table-column  prop="problem.lang" label="语言" width="150">
     </el-table-column>
-    <el-table-column prop="problem.maxRealTime"  label="提交时间">
+    <el-table-column prop="problem.maxRealTime"  label="提交时间(MS)">
     </el-table-column>
   </el-table>
   <div class="block">
@@ -23,16 +23,22 @@
       @current-change="handleCurrentChange"
       :page-size="20"
       layout="total, prev, pager, next, jumper"
-      :total='0'>
+      :total='submissions[1]'>
     </el-pagination>
   </div>
 </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'submit-history',
   props: ['submissions'],
+  computed: {
+    ...mapState({
+      runResult: state => state.submission.runResult
+    })
+  },
   methods: {
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
@@ -40,17 +46,11 @@ export default {
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
     },
-    handleClick (result) {
-      if (result === 'Acceppted') {
-        this.$router.push({path: '/runningsuccess',
-          query: {
-            submissionid: this.submissions.data.id
-          }})
+    handleClick (submissionid) {
+      if (this.submissions[0][submissionid].result === 0) {
+        this.$router.push(`/runningsuccess/${this.submissions[0][submissionid].id}`)
       } else {
-        this.$router.push({path: '/runningwrong',
-          query: {
-            submissionid: this.submissions.data.id
-          }})
+        this.$router.push(`/runningwrong/${this.submissions[0][submissionid].id}`)
       }
     }
   }

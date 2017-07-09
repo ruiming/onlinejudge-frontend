@@ -6,7 +6,17 @@ export default {
     submissions: {},
     submission: {},
     submissionisAccepted: {},
-    specificsubmission: {}
+    specificsubmission: {},
+    runResult: [
+      'PASS',
+      'CPU_TIME_LIMIT_EXCEEDED',
+      'REAL_TIME_LIMIT_EXCEEDED',
+      'MEMORY_LIMIT_EXCEEDED',
+      'RUNTIME_ERROR',
+      'SYSTEM_ERROR',
+      'COMPILE_ERROR', // 自定义的编译错误 (具体看 log)
+      'RESULT_NO_MATCH' // 自定义的结果不匹配 (具体看 log)]
+    ]
   },
   mutations: {
     setSubmission (state, data) {
@@ -32,9 +42,9 @@ export default {
       })
       commit('setSubmission', res.body)
     },
-    async submitUserCondition ({ commit, state }, { offset, limit, all, problemId }) {
+    async submitUserCondition ({ commit, state }, {offset, limit, selfOnly, problemId}) {
       const res = await http.get(`submissions`, {
-        offset, limit, all, problemId
+        params: {offset, limit, selfOnly, problemId}
       })
       commit('setSubmissionList', res.body.data)
     },

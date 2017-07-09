@@ -28,11 +28,11 @@ export default new Router({
     name: 'Problem',
     component: Problem
   }, {
-    path: '/runningsuccess',
+    path: '/runningsuccess/:id',
     name: 'RunningSuccess',
     component: RunningSuccess
   }, {
-    path: '/runningwrong',
+    path: '/runningwrong/:id',
     name: 'RunningWrong',
     component: RunningWrong
   }, {

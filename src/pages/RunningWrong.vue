@@ -1,13 +1,14 @@
 <template>
 <div>
-  <h2 class="problem-title-font">{{specificsubmission.result.problem.id}}</h2>
+  <h2 class="problem-title-font">{{specificsubmission.result.problem.id}} 
+    {{specificsubmission.result.problem.title}}</h2>
    <div class="line"></div>
  
 <li>Compile Error或者Wrong Answer</li>
   <div class="test-condition"> 
      <h4 class="h4-test"> {{specificsubmission.result.problem.passCount}}/{{specificsubmission.result.problem.submitCount}}测试者通过该题目</h4>
-     <h4  class="h4-test"> 运行时间：{{specificsubmission.result.problem.maxCpuTime}}s</h4>
-     <h4 class="h4-time">提交时间：{{specificsubmission.result.problem.maxRealTime}}天</h4>
+     <h4  class="h4-test"> 运行时间：{{runtime}}s</h4>
+     <h4 class="h4-time">提交时间：{{realtime}}天</h4>
    </div>
     <div class="line"></div>
   <div class="text-explain">
@@ -18,7 +19,7 @@
    <h4>我的代码：</h4>
    <h4>语言：{{specificsubmission.result.problem.lang}}</h4>
    <div class="codemirror-font">
-    <codemirror  v-model="code" :options="editorOption"></codemirror>
+    <codemirror id='editcodemirror' v-model="code" :options="editorOption"></codemirror>
    </div>
   </div>
   <div class="btn-group">
@@ -33,14 +34,39 @@ import { codemirror } from 'vue-codemirror'
 import store from 'src/store'
 import { mapState } from 'vuex'
 export default {
-  props: ['submissionid'],
   components: [
     codemirror
   ],
+  data () {
+    return {
+      code: '',
+      runtime: 0,
+      realtime: 0,
+      editorOption: {
+        tabSize: 4,
+        mode: 'text/x-c++src',
+        lineNumbers: true,
+        line: true
+      }
+    }
+  },
+  mounted () {
+    this.code = this.specificsubmission.result.code
+    this.runtime = this.specificsubmission.result.problem.maxCpuTime / 1000
+    this.realtime = this.specificsubmission.result.problem.maxRealTime / 86400000.0
+  },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('problem/setSpecificSubmissionList', {
-      id: this.submissionid
+    await store.dispatch('submission/submitUserSpecificCondition', {
+      id: to.params.id
     })
+    await next()
+  },
+  methods: {
+    async copy () {
+    },
+    async back () {
+      this.$router.go(-1)
+    }
   },
   computed: {
     ...mapState({
