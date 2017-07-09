@@ -2,21 +2,22 @@
   <div id="app">
     <el-menu :default-active="$route.path" :router="true" mode="horizontal">
       <div class="container">
-        <el-menu-item index="/"><span class="signal">SCNU OJ</span></el-menu-item>
+        <el-menu-item index="/home"><span class="signal">SCNU OJ</span></el-menu-item>
         <el-menu-item index="/home">主页</el-menu-item>
         <el-menu-item index="/problemset">题库</el-menu-item>
         <div>
-        <el-submenu index="/" class="user-menu">
-          <template slot="title">用户XXX</template>
-          <el-menu-item index="/user/submission">我的提交</el-menu-item>
-          <el-menu-item index="/user/security">修改密码</el-menu-item>
-          <el-menu-item index="/user/logout">退出登录</el-menu-item>
+
+        <el-submenu index="/" class="user-menu" v-if="loginStatus">
+        <template slot="title">用户{{ userName }}</template>
+        <el-menu-item index="/user/submission">我的提交</el-menu-item>
+        <el-menu-item index="/user/security">修改密码</el-menu-item>
+        <el-menu-item index="/user/logout">退出登录</el-menu-item>
         </el-submenu>
         </div>
         
-        <span class="btngroup">
-        <el-button type="primary" v-on:click="signin">登录</el-button>
-        <el-button type="primary" v-on:click="register">注册</el-button>
+        <span class="btngroup" v-if="!loginStatus">
+        <el-button type="primary" @click="signin">登录</el-button>
+        <el-button type="primary" @click="register">注册</el-button>
         </span>
       </div>
       </el-menu>
@@ -30,14 +31,17 @@
 <script>
 import { mapState } from 'vuex'
 import store from './store'
+
 export default {
   computed: {
     ...mapState({
-      user: state => state.user.user
+      user: state => state.user.user,
+      loginStatus: state => state.user.loginStatus,
+      userName: state => state.user.userName
     })
   },
   async beforeRouteEnter (to, from, next) {
-    await store.dispatch('user/getUser')
+    await store.dispatch('user/setUser')
     await next()
   },
   methods: {

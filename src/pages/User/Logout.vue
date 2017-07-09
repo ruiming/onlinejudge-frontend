@@ -1,13 +1,29 @@
 <template>
 <div class="welcome">
 <div class="title"><p>退出成功！</p></div>
-<div class="tipmsg"><p>3秒钟后自动跳转回登录页</p></div>
-<meta http-equiv="refresh" content="3;URL=http://localhost:8080/#/"></meta> 
+<div class="tipmsg"><p>退出后自动跳转回登录页哦</p></div>
+<meta http-equiv="refresh" content="3;URL=http://localhost:8000"></meta> 
 
 </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import store from 'src/store'
+
+export default {
+  computed: {
+    ...mapState({
+      loginStatus: state => state.user.loginStatus
+    })
+  },
+  async beforeRouteEnter (to, from, next) {
+    await store.dispatch('user/logout')
+    localStorage.removeItem('currentUser_userName')
+    localStorage.removeItem('currentUser_token')
+    await next()
+  }
+}
 </script>
 
 <style scoped>

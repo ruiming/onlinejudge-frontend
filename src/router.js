@@ -10,6 +10,7 @@ import Logout from 'src/pages/User/Logout'
 import Register from 'src/pages/Register'
 import SignIn from 'src/pages/SignIn'
 import RegainPassword from 'src/pages/User/RegainPassword'
+import Submission from 'src/pages/User/submission'
 
 Vue.use(Router)
 
@@ -55,5 +56,9 @@ export default new Router({
     path: '/user/regainpassword',
     name: 'RegainPassword',
     component: RegainPassword
+  }, {
+    path: '/user/submission',
+    name: 'Submission',
+    component: Submission
   }]
 })

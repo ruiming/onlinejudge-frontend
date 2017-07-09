@@ -1,63 +1,66 @@
 <template>
 <div class="regainpw">
-<div class="title"><p>重置密码</p></div>
+<div class="title"><p>找回密码</p></div>
     <div class="firstinput">
-        <span class="p1">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</span>
+        <span class="p1">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：&nbsp;</span>
         <div class="inputmsg">
         <el-input placeholder="请输入邮箱" v-model="email"></el-input>
         </div>
     </div><br><br>
-    <div class="input">
-        <span class="p1">新&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;</span>
+    <!--<div class="input">
+        <span class="p1">新&nbsp;&nbsp;密&nbsp;&nbsp;码：&nbsp;</span>
         <div class="inputmsg">
         <el-tooltip effect="dark" content="密码由6到18位数字或字母组成" placement="bottom">
         <el-input placeholder="请输入新密码" v-model="newpassword"></el-input>
         </el-tooltip>
         </div>
-    </div><br><br>
-    <div class="input">
+    </div><br><br>-->
+    <!--<div class="input">
         <span class="p1">确认新密码：&nbsp;&nbsp;</span>
         <div class="inputmsg">
         <el-tooltip effect="dark" content="密码由6到18位数字或字母组成" placement="bottom">
         <el-input placeholder="请再次输入新密码" v-model="confirmpassword"></el-input>
         </el-tooltip>
         </div>
-    </div><br>
+    </div><br>-->
 
     <div class="changebtn">
         <el-button @click="back">&nbsp;&nbsp;返&nbsp;&nbsp;回&nbsp;&nbsp;</el-button>
-        <el-button type="primary" @click="visible = true">&nbsp;&nbsp;确&nbsp;&nbsp;定&nbsp;&nbsp;</el-button>
+        <el-button type="primary" @click="change">&nbsp;&nbsp;确&nbsp;&nbsp;定&nbsp;&nbsp;</el-button>
     </div>  
-
-<hsy-dialog class="tip" v-model="visible">
-  <div slot="title">提&nbsp;&nbsp;示</div>
-  <div slot="body">
-    <div>重置密码成功！请重新登陆！</div>
-    <div class="btngroup">
-      <el-button type="primary" v-on:click="change">确 定</el-button>
-    </div>
-  </div>
-</hsy-dialog>
 </div>
 </template>
 
 <script>
+import store from 'src/store'
+
 export default {
   data () {
     return {
-      visible: false,
-      email: '',
-      newpassword: '',
-      confirmpassword: ''
+      email: ''
+      // newpassword: ''
+      // confirmpassword: ''
     }
   },
   methods: {
-    handleYes () {
-      alert('Yes')
-      this.visible = false
-    },
-    change: function () {
-      this.$router.push({path: '/'})
+    async change () {
+      if (this.email !== '') {
+        await store.dispatch('user/regainPassword', {
+          email: this.email
+        })
+        this.$message({
+          showClose: true,
+          message: '系统已经向您的邮箱发送了验证邮件, 请查收！',
+          type: 'success'
+        })
+        this.$router.push({path: '/'})
+      } else {
+        this.$message({
+          showClose: true,
+          message: '请输入邮箱！',
+          type: 'error'
+        })
+      }
     },
     back: function () {
       this.$router.push({path: '/'})
